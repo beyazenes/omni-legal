@@ -139,11 +139,11 @@
 
 <div class="container">
     <h1>Privacy Policy — Omni</h1>
-    <div class="meta-info">Effective Date: July 14, 2026 | Last updated: June 26, 2026</div>
+    <div class="meta-info">Effective Date: July 22, 2026 | Last updated: July 22, 2026</div>
 
     <div class="executive-summary">
         <h3>Executive Summary</h3>
-        <p>Omni is a 100% advertisement-free and third-party analytics-free health and nutrition tracking application. We do not contain Google AdMob, Firebase Analytics, or any behavioral tracking SDK. The vast majority of your data never leaves your device. Where external processing is required (AI features, weather, subscriptions), we use the minimum data necessary and rely exclusively on Apple's and Google's enterprise-grade infrastructure.</p>
+        <p>Omni is a 100% advertisement-free and third-party analytics-free health and nutrition tracking application. We do not contain Google AdMob, Firebase Analytics, or any behavioral tracking SDK. The vast majority of your data never leaves your device; the only exception is your profile, which is synchronised through your own private iCloud account so it follows you to a new device (see Section 2.7). Where external processing is required (AI features, weather, subscriptions), we use the minimum data necessary and rely exclusively on Apple's and Google's enterprise-grade infrastructure.</p>
     </div>
 
     <h2>1. Data Controller</h2>
@@ -157,7 +157,7 @@
     <h2>2. What Data We Collect and Why</h2>
     
     <h3>2.1 Data You Provide Directly</h3>
-    <p>The following information is stored <strong>locally on your device</strong> via Apple SwiftData and is never uploaded to the Service Provider's servers:</p>
+    <p>The following information is stored <strong>locally on your device</strong> via Apple SwiftData and, for your profile only, in your own private iCloud account (see Section 2.7). It is never uploaded to the Service Provider's servers:</p>
     <ul>
         <li><strong>Profile:</strong> Name, date of birth, gender, height, weight</li>
         <li><strong>Health goals:</strong> Weight loss, muscle gain, or general wellness</li>
@@ -211,6 +211,19 @@
         <li>Notification interaction signals (stored locally to personalize smart notification timing)</li>
     </ul>
 
+    <h3>2.7 iCloud Sync (Profile Only)</h3>
+    <p>To spare you from re-entering everything when you get a new device or reinstall the Application, your <strong>profile</strong> is synchronised through Apple's iCloud Key-Value Store. The following items are covered:</p>
+    <ul>
+        <li>Name, date of birth, gender, height and weight</li>
+        <li>Activity level, health goal, weight-goal progress and dietary preference</li>
+        <li>Food allergies, diagnosed medical conditions and special conditions</li>
+        <li>Daily water, calorie and step targets</li>
+        <li>Units, theme, language and notification-window preferences</li>
+    </ul>
+    <p>The following are deliberately <strong>not</strong> synchronised, because they are specific to a single device or day: daily logs, streaks, notification timing state, recipe history and your profile photo. Your water and nutrition history already travels with you through Apple Health.</p>
+    <p>Allergies and medical conditions are included on purpose: if they did not travel with you, the AI safety rules that protect you would silently stop applying on a new device.</p>
+    <p>This data is stored in <strong>your own iCloud account</strong> under Apple's encryption. The Service Provider has no access to it, it is not sent to our servers, and it is never used for advertising or analytics. You can turn it off at any time in iOS Settings &rarr; [your name] &rarr; iCloud, and deleting your account inside the Application also erases the iCloud copy.</p>
+
     <h2>3. Artificial Intelligence and Google Gemini API</h2>
     <p>The Application uses the Google Gemini API to power:</p>
     <ul>
@@ -257,7 +270,7 @@
         <tbody>
             <tr>
                 <td><strong>Profile, logs, recipes, streaks</strong></td>
-                <td>Your device (Apple SwiftData — local only)</td>
+                <td>Your device (Apple SwiftData); profile also in your own iCloud</td>
             </tr>
             <tr>
                 <td><strong>HealthKit metrics</strong></td>
