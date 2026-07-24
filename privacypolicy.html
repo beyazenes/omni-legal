@@ -139,7 +139,7 @@
 
 <div class="container">
     <h1>Privacy Policy — Omni</h1>
-    <div class="meta-info">Effective Date: July 22, 2026 | Last updated: July 22, 2026</div>
+    <div class="meta-info">Effective Date: July 23, 2026 | Last updated: July 23, 2026</div>
 
     <div class="executive-summary">
         <h3>Executive Summary</h3>
@@ -170,13 +170,14 @@
     <p>With your explicit permission, the Application reads the following HealthKit data types:</p>
     <ul>
         <li><strong>Activity:</strong> Step count, active energy burned</li>
+        <li><strong>Workouts:</strong> Type, duration, active calories, and end time (used to offer post-workout recovery suggestions)</li>
         <li><strong>Sleep:</strong> Sleep analysis (core, deep, REM stages)</li>
         <li><strong>Nutrition:</strong> Dietary water, calories, carbohydrates, sugar, fiber, protein, total fat, cholesterol, sodium, calcium, iron, magnesium, potassium, vitamins A, C, D, E, K, B6, B12, caffeine</li>
         <li><strong>Body measurements:</strong> As provided by the user</li>
     </ul>
     <p>HealthKit data is governed by strict rules:</p>
     <ul>
-        <li>It is processed locally on your device to generate dashboard charts and progress indicators; aggregated, de-identified signals derived from it (for example, sleep duration, heart-rate variability trend, and activity level) may be sent to the Google Gemini API for AI coaching only with your explicit AI health consent, as described in Section 3</li>
+        <li>It is processed locally on your device — including on Apple Watch, where your workouts are read on your wrist to offer a recovery suggestion the moment a workout ends, entirely on-device — to generate dashboard charts and progress indicators; aggregated, de-identified signals derived from it (for example, sleep duration, heart-rate variability trend, and activity level) may be sent to the Google Gemini API for AI coaching only with your explicit AI health consent, as described in Section 3</li>
         <li>It is never uploaded to or stored on the Service Provider's servers</li>
         <li>It is never used for advertising, marketing, or any purpose unrelated to health and fitness</li>
         <li>It is never sold or shared with third parties for commercial purposes</li>
@@ -219,8 +220,12 @@
         <li>Food allergies, diagnosed medical conditions and special conditions</li>
         <li>Daily water, calorie and step targets</li>
         <li>Units, theme, language and notification-window preferences</li>
+        <li>Saved (favourite) recipes, planned meals, and the last 10 recipes you viewed</li>
+        <li>Supplement reminders you have set up (the times and items, not your intake log)</li>
+        <li>Your favourite drinks (the list you pinned for quick logging)</li>
+        <li>Your Summary tab layout (which sections you hid and the order you arranged them in)</li>
     </ul>
-    <p>The following are deliberately <strong>not</strong> synchronised, because they are specific to a single device or day: daily logs, streaks, notification timing state, recipe history and your profile photo. Your water and nutrition history already travels with you through Apple Health.</p>
+    <p>The following are deliberately <strong>not</strong> synchronised, because they are specific to a single device or day: your meal and supplement intake logs, streaks, notification timing state and your profile photo. Your water and nutrition history already travels with you through Apple Health.</p>
     <p>Allergies and medical conditions are included on purpose: if they did not travel with you, the AI safety rules that protect you would silently stop applying on a new device.</p>
     <p>This data is stored in <strong>your own iCloud account</strong> under Apple's encryption. The Service Provider has no access to it, it is not sent to our servers, and it is never used for advertising or analytics. You can turn it off at any time in iOS Settings &rarr; [your name] &rarr; iCloud, and deleting your account inside the Application also erases the iCloud copy.</p>
 
