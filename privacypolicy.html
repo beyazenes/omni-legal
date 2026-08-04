@@ -133,6 +133,25 @@
             margin: 0;
             font-weight: 500;
         }
+
+        /* Geniş içerik (tablo) sayfayı yatay kaydırtmasın — kendi içinde kaysın.
+           Sayfa telefonda, uygulama içindeki tarayıcıda açılıyor. */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+        }
+        .table-wrap table { margin: 0; }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 24px 20px; border-radius: 14px; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.2rem; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 9px 8px; }
+            a { overflow-wrap: anywhere; word-break: break-word; }
+        }
     </style>
 </head>
 <body>
@@ -284,7 +303,8 @@
     <p>The Application <strong>does not use any third-party behavioral analytics SDKs</strong> (including Firebase Analytics, Flurry, Mixpanel, or similar services). In-app data visualizations (charts, trends) are computed locally on your device using Apple's native frameworks.</p>
 
     <h2>6. Data Storage and Architecture</h2>
-    <table>
+    <div class="table-wrap">
+<table>
         <thead>
             <tr>
                 <th>Data Type</th>
@@ -322,10 +342,12 @@
             </tr>
         </tbody>
     </table>
+</div>
     <p>The Service Provider does not operate any servers that store personal user data.</p>
 
     <h2>7. Lawful Basis for Processing (GDPR — EEA Users)</h2>
-    <table>
+    <div class="table-wrap">
+<table>
         <thead>
             <tr>
                 <th>Processing Activity</th>
@@ -359,6 +381,7 @@
             </tr>
         </tbody>
     </table>
+</div>
     <p>Where processing is based on consent, you may withdraw it at any time without affecting the lawfulness of processing carried out before withdrawal. Withdrawal does not prevent you from continuing to use the Application's core features.</p>
 
     <h2>8. International Data Transfers</h2>
@@ -370,7 +393,8 @@
     <p>You may request a copy of applicable transfer safeguards by contacting: <a href="mailto:support.omniapp@gmail.com">support.omniapp@gmail.com</a></p>
 
     <h2>9. Data Retention</h2>
-    <table>
+    <div class="table-wrap">
+<table>
         <thead>
             <tr>
                 <th>Data Type</th>
@@ -404,6 +428,7 @@
             </tr>
         </tbody>
     </table>
+</div>
     <p>Uninstalling the Application immediately and permanently deletes all locally stored data from your device.</p>
 
     <h2>10. Your Rights Under GDPR (EEA Users)</h2>
