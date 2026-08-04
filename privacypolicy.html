@@ -139,7 +139,7 @@
 
 <div class="container">
     <h1>Privacy Policy — Omni</h1>
-    <div class="meta-info">Effective Date: July 23, 2026 | Last updated: July 23, 2026</div>
+    <div class="meta-info">Effective Date: August 3, 2026 | Last updated: August 3, 2026</div>
 
     <div class="executive-summary">
         <h3>Executive Summary</h3>
@@ -181,7 +181,7 @@
         <li>It is never uploaded to or stored on the Service Provider's servers</li>
         <li>It is never used for advertising, marketing, or any purpose unrelated to health and fitness</li>
         <li>It is never sold or shared with third parties for commercial purposes</li>
-        <li>Under GDPR, it constitutes special category health data and is processed exclusively on the basis of your explicit consent (Article 9(2)(a))</li>
+        <li>Under GDPR, it constitutes special category health data and is processed on the basis of your explicit consent (Article 9(2)(a)) — given when you grant HealthKit access and, for transmission to the AI, when you enable AI health personalization</li>
         <li>You may revoke HealthKit access at any time via your device's Health app settings</li>
     </ul>
 
@@ -191,7 +191,17 @@
         <li><strong>Ingredient scanning:</strong> Photographing food items to auto-populate recipe ingredients</li>
         <li><strong>Supplement scanning:</strong> Photographing supplement labels to log nutritional content</li>
     </ul>
-    <p>Images are transmitted to the Google Gemini API solely for real-time analysis. <em>Images are not stored on the Service Provider's servers.</em> They are discarded immediately after analysis is complete.</p>
+    <p>Images are transmitted to the Google Gemini API solely for real-time analysis. <em>Your photographs are never stored on the Service Provider's servers.</em> They are discarded immediately after analysis is complete.</p>
+
+    <h3>2.3.1 AI-Generated Dish Illustrations (Shared Image Library)</h3>
+    <p>For premium users, the Application can generate an illustrative image of a logged dish so that your diary is visual rather than a plain list. To avoid regenerating (and paying for) the same illustration for every user, these <strong>AI-generated</strong> images are stored in a shared library hosted on Google Firebase Storage and keyed by a generic English dish name (for example, <code>red-lentil-soup</code>).</p>
+    <p>What this means for your privacy:</p>
+    <ul>
+        <li>Only the <strong>AI-generated illustration</strong> is uploaded — never your own photograph.</li>
+        <li>The stored file name contains only a generic dish description. It contains no user identifier, no account reference, and nothing that links the image to you.</li>
+        <li>Nothing about who logged the dish, when, or how often is stored alongside the image.</li>
+        <li>Generated images are also cached on your device and are excluded from your iCloud backup.</li>
+    </ul>
 
     <h3>2.4 Location Data (Apple WeatherKit)</h3>
     <p>The Application accesses your device's approximate location to:</p>
@@ -211,6 +221,7 @@
         <li>App crash reports (processed locally; not transmitted to the Service Provider)</li>
         <li>Notification interaction signals (stored locally to personalize smart notification timing)</li>
     </ul>
+    <p><strong>Lock Screen and Dynamic Island (Live Activity):</strong> If enabled, your daily water progress can be displayed on your Lock Screen and in the Dynamic Island. This information is rendered on your device only and is never transmitted anywhere. Because a Lock Screen is visible without unlocking your device, anyone with physical access to your phone could see this figure; you can turn the feature off at any time in app settings, or dismiss the activity directly from the Lock Screen.</p>
 
     <h3>2.7 iCloud Sync (Profile Only)</h3>
     <p>To spare you from re-entering everything when you get a new device or reinstall the Application, your <strong>profile</strong> is synchronised through Apple's iCloud Key-Value Store. The following items are covered:</p>
@@ -239,15 +250,23 @@
     </ul>
     
     <p><strong>Data transmitted to Gemini:</strong></p>
-    <p>When AI features are active and you have granted AI health consent, the following non-identifiable context may be transmitted: age range, weight range, health goal type, food allergies, diagnosed medical conditions, weekly aggregate nutrition totals, derived wellness signals (such as heart-rate variability trend, sleep duration, and activity level), local weather context (temperature and humidity) used to calculate dynamic hydration goals, anonymized behavioral usage patterns (for example, typical logging times learned on-device), and food or supplement images. This list is illustrative and not exhaustive; in all cases the data is aggregated, de-identified, and never accompanied by your name, email, or account identifier.</p>
-    
+    <p>Transmitted data falls into two distinct categories, which are governed by different rules:</p>
+
+    <p><strong>(a) Safety data — always included when you request an AI feature.</strong><br>
+    Your food allergies, diagnosed medical conditions, and special conditions (pregnancy or breastfeeding) are included in every food-related AI request — recipe generation, meal photo analysis, and meal suggestions — <em>regardless of whether you have enabled AI health personalization</em>. This is a deliberate safety decision: an AI that does not know your allergy could suggest a dish that harms you. Withholding this data would make the feature unsafe rather than more private. If you do not wish this data to be transmitted, do not enter it in your profile, or avoid using the AI recipe and scanning features.</p>
+
+    <p><strong>(b) Personalization data — only with your explicit AI health consent.</strong><br>
+    Derived wellness signals (heart-rate variability trend, sleep duration, activity level), aggregated behavioural patterns learned on-device (for example, typical logging times), and weekly aggregate nutrition totals are transmitted <em>only</em> when you have enabled AI health personalization. These improve suggestion quality; they are not required for safety.</p>
+
+    <p>In addition, the following context may be transmitted when relevant to your request: age range, weight range, health goal type, dietary preference, local weather context (temperature and humidity) used to calculate dynamic hydration goals, and food or supplement images. This list is illustrative and not exhaustive; in all cases the data is de-identified and never accompanied by your name, email address, or account identifier.</p>
+
     <p><strong>Critical safeguards:</strong></p>
     <ul>
-        <li>Your allergies and medical conditions are injected into every Gemini prompt as <em>absolute, non-negotiable safety constraints</em>. The AI is explicitly instructed never to suggest foods that conflict with your allergies or conditions.</li>
-        <li>Pregnancy, diabetes, hypertension, celiac disease, kidney disease, heart conditions, thyroid disorders, GERD, and osteoporosis each trigger specific hard restriction rules in the prompt layer.</li>
-        <li>If you have <strong>not</strong> granted AI health consent (via the in-app toggle), no special-category health data (your allergies and diagnosed medical conditions) is transmitted to Gemini under any circumstances. Your diet preference is used only to generate the recipes you actively request.</li>
+        <li>Your allergies and medical conditions are injected into every food-related Gemini prompt as <em>absolute, non-negotiable safety constraints</em>. The AI is explicitly instructed never to suggest foods that conflict with your allergies or conditions.</li>
+        <li>Pregnancy, breastfeeding, diabetes, hypertension, celiac disease, kidney disease, heart conditions, thyroid disorders, GERD, and osteoporosis each trigger specific hard restriction rules in the prompt layer.</li>
+        <li>AI-generated content is an estimate, not medical advice. AI systems can make mistakes: always verify allergen content yourself before eating, particularly if you have a severe allergy.</li>
         <li>AI-processed data is never used to build advertising profiles or sold to third parties.</li>
-        <li>The AI Master Toggle in app settings immediately and completely stops all external AI data transmissions.</li>
+        <li>Disabling AI health personalization in app settings stops all <em>proactive</em> AI processing (smart notifications, coaching insights, behavioural memory, dynamic goals) and stops the transmission of the personalization data described in (b). Features you invoke yourself — scanning a meal or requesting a recipe — continue to work, because they are actions you explicitly initiate; these requests still include the safety data described in (a).</li>
     </ul>
     <p>This processing is governed by Google's Privacy Policy and the Google Gemini API Terms of Service:<br>
     <a href="https://ai.google.dev/gemini-api/terms" target="_blank">https://ai.google.dev/gemini-api/terms</a></p>
@@ -286,8 +305,12 @@
                 <td>Momentary — not stored</td>
             </tr>
             <tr>
-                <td><strong>Camera images</strong></td>
+                <td><strong>Camera images (your photographs)</strong></td>
                 <td>Momentary — discarded after Gemini analysis</td>
+            </tr>
+            <tr>
+                <td><strong>AI-generated dish illustrations</strong></td>
+                <td>Your device, plus a shared library on Google Firebase Storage keyed by a generic dish name (no user identifier)</td>
             </tr>
             <tr>
                 <td><strong>Subscription status</strong></td>
@@ -315,6 +338,10 @@
                 <td>Explicit consent — Article 6(1)(a) and Article 9(2)(a)</td>
             </tr>
             <tr>
+                <td>Allergy and medical condition data sent to the AI as a safety constraint</td>
+                <td>Explicit consent — Article 6(1)(a) and Article 9(2)(a), given when you enter this data after being informed that it is used to filter AI-generated food suggestions</td>
+            </tr>
+            <tr>
                 <td>Camera image analysis via Gemini</td>
                 <td>Explicit consent — Article 6(1)(a)</td>
             </tr>
@@ -335,7 +362,7 @@
     <p>Where processing is based on consent, you may withdraw it at any time without affecting the lawfulness of processing carried out before withdrawal. Withdrawal does not prevent you from continuing to use the Application's core features.</p>
 
     <h2>8. International Data Transfers</h2>
-    <p>Google LLC (Gemini API) and RevenueCat process data on servers located in the United States. Where such transfers occur from the EEA, the Service Provider relies on:</p>
+    <p>Google LLC (Gemini API and Firebase Storage) and RevenueCat process data on servers located in the United States. Where such transfers occur from the EEA, the Service Provider relies on:</p>
     <ul>
         <li>Standard Contractual Clauses (SCCs) approved by the European Commission (Commission Implementing Decision (EU) 2021/914)</li>
         <li>Google LLC's and RevenueCat's participation in applicable data transfer frameworks</li>
