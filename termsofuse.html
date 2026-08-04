@@ -13,6 +13,7 @@
             --border-color: #e5e5e7;
             --secondary-text: #86868b;
         }
+
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-color: #000000;
@@ -23,6 +24,7 @@
                 --secondary-text: #86868b;
             }
         }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
@@ -33,6 +35,7 @@
             display: flex;
             justify-content: center;
         }
+
         .container {
             max-width: 800px;
             width: 100%;
@@ -42,12 +45,14 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             margin: 20px 0;
         }
+
         h1 {
             font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 5px;
             color: var(--text-color);
         }
+
         h2 {
             font-size: 1.4rem;
             font-weight: 600;
@@ -56,33 +61,302 @@
             border-bottom: 1px solid var(--border-color);
             color: var(--text-color);
         }
+
         h3 {
             font-size: 1.1rem;
             font-weight: 600;
             margin-top: 20px;
         }
+
         p, li {
             font-size: 1rem;
             color: var(--text-color);
             opacity: 0.9;
         }
+
         .meta-info {
             color: var(--secondary-text);
             font-size: 0.9rem;
             margin-bottom: 30px;
         }
+
         .section-divider {
             height: 1px;
             background-color: var(--border-color);
             margin: 40px 0;
         }
+
         ul {
             padding-left: 20px;
         }
+
         li {
             margin-bottom: 8px;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--bg-color);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .executive-summary {
+            background-color: var(--bg-color);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 30px;
+        }
+
+        .executive-summary p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Geniş içerik (tablo) sayfayı yatay kaydırtmasın — kendi içinde kaysın.
+           Sayfa telefonda, uygulama içindeki tarayıcıda açılıyor. */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+        }
+        .table-wrap table { margin: 0; }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 24px 20px; border-radius: 14px; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.2rem; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 9px 8px; }
+            /* Uzun URL'ler satırı taşırmasın */
+            a { overflow-wrap: anywhere; word-break: break-word; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Terms of Use — Omni</h1>
+    <div class="meta-info">Effective Date: August 3, 2026</div>
+
+    <p><strong>Developer:</strong> Enes Beyaz<br>
+    <strong>Contact:</strong> <a href="mailto:support.omniapp@gmail.com">support.omniapp@gmail.com</a></p>
+
+    <div class="executive-summary">
+        <p>By downloading or using the Omni application, you agree to these Terms of Use. Please read them carefully before using the Application.</p>
+    </div>
+
+    <h2>1. The Application</h2>
+    <p>Omni ("Application") is a personal health, hydration, and nutrition tracking application developed and operated by Enes Beyaz ("Service Provider"). The Application is a 100% advertisement-free utility. Neither free nor premium users are shown advertisements of any kind.</p>
+
+    <h2>2. License</h2>
+    <p>Subject to your compliance with these Terms, the Service Provider grants you a limited, non-exclusive, non-transferable, revocable license to install and use the Application on a device you own or control, for personal, non-commercial purposes.</p>
+    <p>You may not:</p>
+    <ul>
+        <li>Copy, modify, or create derivative works of the Application or any part of it</li>
+        <li>Reverse engineer, decompile, disassemble, or attempt to derive the source code</li>
+        <li>Sell, sublicense, rent, lease, or otherwise transfer your rights to the Application</li>
+        <li>Remove, obscure, or alter any proprietary notices, labels, or marks</li>
+    </ul>
+
+    <h2>3. Intellectual Property</h2>
+    <p>All intellectual property rights in the Application — including its source code, design, user interface, icons, trademarks, and branding — are and remain the exclusive property of the Service Provider. Nothing in these Terms grants you any license or right to use the Service Provider's trademarks or branding for any purpose.</p>
+
+    <h2>4. What the Application Does and Does Not Do</h2>
+
+    <h3>4.1 Features</h3>
+    <p>Omni provides the following capabilities:</p>
+    <ul>
+        <li>AI-powered personalized recipe generation based on your profile, goals, and available ingredients</li>
+        <li>Camera-based food and supplement scanning using Google Gemini Vision</li>
+        <li>Daily water, meal, and supplement tracking</li>
+        <li>Apple HealthKit integration (steps, active energy, sleep, 15+ nutritional metrics)</li>
+        <li>Dynamic hydration goals based on local weather conditions (Apple WeatherKit)</li>
+        <li>Smart, context-aware push notifications</li>
+        <li>Weekly AI-generated health coaching summaries (Premium)</li>
+        <li>Streak tracking, meal planning, and cooking mode</li>
+    </ul>
+
+    <h3>4.2 Important Limitations — Please Read</h3>
+    <p>By using the Application, you acknowledge and agree that:</p>
+    <ul>
+        <li><strong>Not medical advice:</strong> All AI-generated content in the Application — including recipes, nutritional estimates, hydration recommendations, and weekly coaching summaries — is for informational purposes only. It does not constitute medical advice, diagnosis, or treatment, and does not replace the guidance of a qualified physician, registered dietitian, or other licensed healthcare professional.</li>
+        <li><strong>Not a diagnostic tool:</strong> The Application does not diagnose, treat, cure, or prevent any medical condition or disease.</li>
+        <li><strong>Allergy disclaimer:</strong> Although the Application applies your stated food allergies and medical conditions as hard constraints when generating recipes, and flags them where it can when analysing a scanned meal, this process does not guarantee the absence of allergens. AI systems can misidentify ingredients. Users with severe or life-threatening allergies must independently verify all ingredients before consumption and must not rely on the Application as their only safeguard.</li>
+        <li><strong>Nutritional values are estimates:</strong> Calorie and macronutrient figures generated by AI are approximations and should not be relied upon for clinical dietary management, eating disorder treatment, or physician-prescribed medical diets.</li>
+        <li><strong>AI outputs may be imperfect:</strong> AI-generated content is produced based on the information you provide. Outputs are not always accurate, and you should apply your own judgment before acting on any AI suggestion.</li>
+        <li><strong>Internet required for AI features:</strong> Recipe generation, image analysis, weather-based hydration, and weekly reports require an active internet connection.</li>
+    </ul>
+
+    <h2>5. Artificial Intelligence Features and EU AI Act</h2>
+    <p>The Application integrates AI capabilities powered by the Google Gemini API. By using these features, you acknowledge that:</p>
+    <ul>
+        <li>AI-generated content is for informational purposes only and should not replace professional medical or nutritional advice</li>
+        <li>The AI system generates personalized recommendations through automated processing of your profile data, which constitutes profiling under GDPR</li>
+        <li>You have the right to request human review of any automated recommendation you believe significantly affects you, as described in the Privacy Policy</li>
+        <li>You may disable AI health personalization at any time in app settings. Doing so halts all proactive AI processing (smart notifications, coaching insights, behavioural memory and dynamic goals) and stops the transmission of personalization data. Features you invoke yourself — scanning a meal or requesting a recipe — continue to work, because they are actions you explicitly initiate; those requests still include your allergy and medical-condition data, which is sent as a safety constraint so the AI does not suggest something harmful to you</li>
+        <li>The Service Provider ensures AI features comply with applicable law, including the EU AI Act where applicable</li>
+        <li>The AI features in this Application are classified as low-risk under the EU AI Act and do not make decisions that produce legal or similarly significant effects</li>
+    </ul>
+
+    <h2>6. Apple HealthKit</h2>
+    <p>The Application may request access to Apple HealthKit data, including steps, active energy, sleep analysis, water intake, and nutritional metrics, solely to provide and improve Application features.</p>
+    <p>HealthKit data:</p>
+    <ul>
+        <li>Will not be used for advertising or marketing purposes</li>
+        <li>Will not be shared with advertisers or any third party for purposes unrelated to health and fitness</li>
+        <li>Will not be sold to any third party</li>
+        <li>Will be processed in accordance with Apple's HealthKit framework guidelines and applicable law</li>
+    </ul>
+
+    <h2>7. Subscriptions and In-App Purchases</h2>
+
+    <h3>7.1 Free and Premium Tiers</h3>
+    <p>The Application is available in two tiers:</p>
+    <p><strong>Free:</strong> All core tracking features (meals, water, supplements, streaks, Apple Health sync), plus a weekly allowance of AI usage — currently 3 AI analyses per week (camera or text based, including re-analysis of a corrected item) and 3 daily-recipe refreshes per week — one daily recipe suggestion, and the short coaching note shown after you log a meal. Allowances reset weekly and may be adjusted over time; the current figures are always shown in the app.</p>
+    <p><strong>Premium:</strong> Unlimited AI recipe generation and camera-based food, drink and supplement scanning (no weekly allowance), AI-generated meal images in your diary, context-aware smart cards, proactive AI coaching notifications and personal memory, weekly AI health coaching reports, and all other advanced features.</p>
+
+    <h3>7.2 Free Trial</h3>
+    <p>A free trial may be offered with the annual subscription. Where offered, the trial currently lasts 7 days and is available only to users who are eligible for an introductory offer under Apple's rules; if you have already used a trial for this Application, the paywall will show the standard price instead of a trial offer. Unless you cancel at least 24 hours before the trial ends, the subscription renews automatically and your Apple ID is charged the price shown at the point of purchase. You can cancel at any time during the trial in your App Store account settings; cancelling stops the charge but you keep premium access until the trial period ends. The exact trial length, price and renewal terms applicable to you are always displayed on the purchase screen before you confirm.</p>
+
+    <h3>7.3 Billing</h3>
+    <ul>
+        <li>Subscriptions are billed through your Apple App Store account</li>
+        <li>Your subscription automatically renews unless cancelled at least 24 hours before the end of the current billing period</li>
+        <li>You can manage and cancel your subscription at any time in your App Store account settings</li>
+        <li>No refund is provided for unused portions of a subscription period, except as required by applicable law</li>
+    </ul>
+
+    <h3>7.4 EU / EEA Right of Withdrawal</h3>
+    <p>If you are a consumer resident in the European Union or European Economic Area, you have a 14-day right of withdrawal from the date of purchase of a new subscription. However, by immediately accessing premium features upon purchase, you expressly consent to the immediate performance of the digital service and acknowledge that your right of withdrawal is forfeited upon full performance. This does not affect any statutory rights you hold under applicable consumer protection law that cannot lawfully be excluded.</p>
+
+    <h3>7.5 Price Changes</h3>
+    <p>The Service Provider reserves the right to change subscription pricing or included features with reasonable advance notice. Continued use of the Application after a price change constitutes acceptance of the new pricing.</p>
+
+    <h2>8. Eligibility</h2>
+    <p>By using the Application, you represent that you are legally permitted to use it in your jurisdiction and that you are at least 16 years of age. If you are under 16, a parent or legal guardian must review and accept these Terms on your behalf before use.</p>
+
+    <h2>9. Third-Party Services</h2>
+    <p>The Application uses the following third-party services. Each is governed by its own terms and privacy policies, for which the Service Provider is not responsible:</p>
+    <div class="table-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>Service</th>
+                <th>Purpose</th>
+                <th>Terms / Policy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Google Gemini API</td>
+                <td>AI content generation and image analysis</td>
+                <td><a href="https://ai.google.dev/gemini-api/terms" target="_blank">ai.google.dev/gemini-api/terms</a></td>
+            </tr>
+            <tr>
+                <td>RevenueCat</td>
+                <td>Subscription and entitlement management</td>
+                <td><a href="https://www.revenuecat.com/terms" target="_blank">revenuecat.com/terms</a></td>
+            </tr>
+            <tr>
+                <td>Apple WeatherKit</td>
+                <td>Local weather data for hydration goals</td>
+                <td><a href="https://developer.apple.com/weatherkit/data-source-attribution" target="_blank">developer.apple.com/weatherkit</a></td>
+            </tr>
+            <tr>
+                <td>Apple HealthKit</td>
+                <td>Health metric integration</td>
+                <td><a href="https://www.apple.com/legal/privacy" target="_blank">apple.com/legal/privacy</a></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <p>In addition, the Application uses Google Firebase (App Check and Cloud Storage) to verify that requests come from a genuine copy of the Application and to host a shared library of AI-generated dish illustrations. No personal data or user identifier is stored in that library. Firebase is governed by Google's terms: <a href="https://firebase.google.com/terms" target="_blank">https://firebase.google.com/terms</a></p>
+
+    <h2>10. Acceptable Use</h2>
+    <p>You agree not to:</p>
+    <ul>
+        <li>Use the Application for any unlawful purpose or in violation of applicable regulations</li>
+        <li>Attempt to gain unauthorized access to any part of the Application or its infrastructure</li>
+        <li>Introduce malicious code, viruses, or harmful data to the Application</li>
+        <li>Use the Application in any manner that could damage, overburden, or impair its performance</li>
+    </ul>
+
+    <h2>11. Termination</h2>
+    <p>The Service Provider may suspend or terminate your access to the Application if you materially breach these Terms. Where the breach is capable of remedy, you will be given 14 days' written notice to cure the breach before termination.</p>
+    <p>The Service Provider may suspend or terminate your access immediately and without notice if you:</p>
+    <ul>
+        <li>Violate applicable law</li>
+        <li>Infringe intellectual property rights</li>
+        <li>Engage in conduct that could harm other users or the Service Provider</li>
+    </ul>
+    <p>Upon termination, your right to use the Application ends and you must delete all copies from your devices.</p>
+
+    <h2>12. Connectivity and Device Requirements</h2>
+    <p>Some features require an active internet connection. The Service Provider is not responsible for the Application failing to operate at full capacity due to lack of Wi-Fi access or exhausted mobile data. If you use the Application outside a Wi-Fi area, your mobile operator's standard charges apply. Roaming charges may apply outside your home territory.</p>
+    <p>The Service Provider strongly advises against jailbreaking or rooting your device, as this may compromise device security and cause the Application to malfunction.</p>
+
+    <h2>13. Limitation of Liability</h2>
+    <p>To the fullest extent permitted by applicable law, the Service Provider shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of profits, or business interruption, arising out of or related to your use of the Application.</p>
+    <p>The Service Provider retains full liability for:</p>
+    <ul>
+        <li>Death or personal injury caused by its negligence</li>
+        <li>Fraud or fraudulent misrepresentation</li>
+        <li>Any liability that cannot be excluded or limited under applicable law</li>
+    </ul>
+    <p>To the fullest extent permitted by applicable law, the Service Provider's total aggregate liability for any claim shall not exceed the amount you paid in the 12 months preceding the claim, or the minimum amount permitted by applicable law, whichever is greater.</p>
+    <p>Nothing in these Terms limits any rights you have under mandatory applicable consumer protection law.</p>
+
+    <h2>14. Indemnification</h2>
+    <p>To the fullest extent permitted by applicable law, you agree to indemnify and hold harmless the Service Provider from and against any claims, liabilities, damages, losses, and expenses arising directly from your breach of these Terms or your intentional misuse of the Application.</p>
+    <p>This indemnification does not apply to claims arising from the Service Provider's own negligence, breach of these Terms, or violation of applicable law. In jurisdictions where consumer indemnification is restricted by law, this clause applies only to the maximum extent permitted.</p>
+
+    <h2>15. Updates and Availability</h2>
+    <p>The Service Provider may update the Application from time to time to improve features, fix bugs, or comply with applicable law. You are advised to keep the Application updated. The Service Provider may cease providing the Application at any time, at which point all licenses granted to you terminate and you must delete the Application from your devices.</p>
+
+    <h2>16. Severability</h2>
+    <p>If any provision of these Terms is held to be invalid or unenforceable, that provision shall be modified to the minimum extent necessary to make it valid and enforceable. The remaining provisions shall continue in full force and effect.</p>
+
+    <h2>17. Entire Agreement</h2>
+    <p>These Terms of Use, together with the Privacy Policy, constitute the entire agreement between you and the Service Provider concerning your use of the Application and supersede all prior agreements.</p>
+
+    <h2>18. Governing Law and Jurisdiction</h2>
+    <p>These Terms are governed by the laws of the jurisdiction in which the Service Provider is established, excluding conflict of law rules, except to the extent that mandatory consumer protection laws of your country of residence apply. EU/EEA consumers retain the benefit of any mandatory provisions of consumer protection law of their country of residence. Any dispute arising from these Terms will be resolved before the courts having jurisdiction under applicable law.</p>
+
+    <h2>19. Changes to These Terms</h2>
+    <p>The Service Provider may periodically update these Terms. Material changes will be communicated via in-app notification and posted on this page with a new effective date. Previous versions are available upon request at: <a href="mailto:support.omniapp@gmail.com">support.omniapp@gmail.com</a></p>
+
+    <h2>20. Contact</h2>
+    <p>Enes Beyaz<br>
+    Email: <a href="mailto:support.omniapp@gmail.com">support.omniapp@gmail.com</a></p>
+
+    <div class="section-divider"></div>
+    <p class="meta-info"><em>These Terms of Use are effective as of August 3, 2026.</em></p>
+
+</div>
+
+</body>
+</html>
