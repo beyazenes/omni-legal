@@ -158,11 +158,11 @@
 
 <div class="container">
     <h1>Privacy Policy — Omni</h1>
-    <div class="meta-info">Effective Date: August 3, 2026 | Last updated: August 3, 2026</div>
+    <div class="meta-info">Effective Date: September 25, 2026 | Last updated: September 25, 2026</div>
 
     <div class="executive-summary">
         <h3>Executive Summary</h3>
-        <p>Omni is a 100% advertisement-free and third-party analytics-free health and nutrition tracking application. We do not contain Google AdMob, Firebase Analytics, or any behavioral tracking SDK. The vast majority of your data never leaves your device; the only exception is your profile, which is synchronised through your own private iCloud account so it follows you to a new device (see Section 2.7). Where external processing is required (AI features, weather, subscriptions), we use the minimum data necessary and rely exclusively on Apple's and Google's enterprise-grade infrastructure.</p>
+        <p>Omni is a 100% advertisement-free and third-party analytics-free health and nutrition tracking application. We do not contain Google AdMob, Firebase Analytics, or any behavioral tracking SDK. The vast majority of your data never leaves your device; the only exception is your profile, which is synchronised through your own private iCloud account so it follows you to a new device (see Section 2.7). Where external processing is required (AI features, weather, subscriptions, barcode lookups), we use the minimum data necessary and rely only on the small set of providers named in this policy: Apple, Google, RevenueCat and Open Food Facts.</p>
     </div>
 
     <h2>1. Data Controller</h2>
@@ -183,6 +183,9 @@
         <li><strong>Dietary preferences:</strong> Diet type (vegetarian, vegan, etc.), food allergies, chronic medical conditions</li>
         <li><strong>Daily logs:</strong> Meals consumed, water intake, supplements taken, recipes saved</li>
         <li><strong>Notification preferences:</strong> Smart notification settings and history</li>
+        <li><strong>Account:</strong> The anonymous identifier provided by Sign in with Apple, and the name and email address Apple shares with the Application (if you choose to share them)</li>
+        <li><strong>Special conditions:</strong> Pregnancy or breastfeeding status and the dates you enter</li>
+        <li><strong>Cycle tracking (optional, off by default):</strong> Period days, symptoms and ovulation test results you record, and your cycle settings</li>
     </ul>
 
     <h3>2.2 Apple HealthKit</h3>
@@ -192,8 +195,12 @@
         <li><strong>Workouts:</strong> Type, duration, active calories, and end time (used to offer post-workout recovery suggestions)</li>
         <li><strong>Sleep:</strong> Sleep analysis (core, deep, REM stages)</li>
         <li><strong>Nutrition:</strong> Dietary water, calories, carbohydrates, sugar, fiber, protein, total fat, cholesterol, sodium, calcium, iron, magnesium, potassium, vitamins A, C, D, E, K, B6, B12, caffeine</li>
-        <li><strong>Body measurements:</strong> As provided by the user</li>
+        <li><strong>Heart:</strong> Heart-rate variability (used as a recovery and stress signal)</li>
+        <li><strong>Body and profile:</strong> Height, weight, date of birth and biological sex — used to pre-fill your profile, which you confirm</li>
+        <li><strong>Cycle and reproductive health</strong> (used only for cycle tracking and pregnancy/breastfeeding goals): menstrual flow, spotting, ovulation test results, basal body temperature, cycle symptoms, pregnancy and lactation</li>
     </ul>
+    <p>With your permission, the Application also <strong>writes</strong> to HealthKit: the meals, drinks, water and nutrients you log, and — if you use cycle tracking — the period days, symptoms, ovulation test results and pregnancy or breastfeeding status you enter in the Application, so they stay consistent with your other health apps.</p>
+    <p><strong>Cycle data stays on your device.</strong> Your period dates, symptoms and cycle history are never sent to the AI or to anyone else. If you turn on <em>Share phase with AI</em> in cycle settings (off by default), only the name of your current phase (for example, "luteal") is included in AI requests so that suggestions can adapt to it.</p>
     <p>HealthKit data is governed by strict rules:</p>
     <ul>
         <li>It is processed locally on your device — including on Apple Watch, where your workouts are read on your wrist to offer a recovery suggestion the moment a workout ends, entirely on-device — to generate dashboard charts and progress indicators; aggregated, de-identified signals derived from it (for example, sleep duration, heart-rate variability trend, and activity level) may be sent to the Google Gemini API for AI coaching only with your explicit AI health consent, as described in Section 3</li>
@@ -205,40 +212,36 @@
     </ul>
 
     <h3>2.3 Camera and Image Data</h3>
-    <p>The Application uses your device camera for:</p>
+    <p>The Application uses your device camera and, if you choose, your photo library for:</p>
     <ul>
+        <li><strong>Meal and drink logging:</strong> Photographing what you eat or drink so it can be identified and logged</li>
         <li><strong>Ingredient scanning:</strong> Photographing food items to auto-populate recipe ingredients</li>
         <li><strong>Supplement scanning:</strong> Photographing supplement labels to log nutritional content</li>
+        <li><strong>Barcode scanning:</strong> Reading a packaged product's barcode</li>
     </ul>
     <p>Images are transmitted to the Google Gemini API solely for real-time analysis. <em>Your photographs are never stored on the Service Provider's servers.</em> They are discarded immediately after analysis is complete.</p>
+    <p><strong>Barcodes:</strong> When you scan a barcode, only the barcode number is sent to the <strong>Open Food Facts</strong> public database to look up the product's nutrition label. No image, account identifier or personal data is sent with it. Open Food Facts data is available under the Open Database License: <a href="https://world.openfoodfacts.org/terms-of-use" target="_blank">world.openfoodfacts.org/terms-of-use</a></p>
+    <p><strong>Text you type:</strong> When you describe a meal in words, answer a question the Application asks you, or list ingredients for a recipe, that text is sent to the Google Gemini API for real-time analysis under the same rules as images.</p>
 
-    <h3>2.3.1 AI-Generated Dish Illustrations (Shared Image Library)</h3>
-    <p>For premium users, the Application can generate an illustrative image of a logged dish so that your diary is visual rather than a plain list. To avoid regenerating (and paying for) the same illustration for every user, these <strong>AI-generated</strong> images are stored in a shared library hosted on Google Firebase Storage and keyed by a generic English dish name (for example, <code>red-lentil-soup</code>).</p>
-    <p>What this means for your privacy:</p>
-    <ul>
-        <li>Only the <strong>AI-generated illustration</strong> is uploaded — never your own photograph.</li>
-        <li>The stored file name contains only a generic dish description. It contains no user identifier, no account reference, and nothing that links the image to you.</li>
-        <li>Nothing about who logged the dish, when, or how often is stored alongside the image.</li>
-        <li>Generated images are also cached on your device and are excluded from your iCloud backup.</li>
-    </ul>
 
     <h3>2.4 Location Data (Apple WeatherKit)</h3>
     <p>The Application accesses your device's approximate location to:</p>
     <ul>
         <li>Calculate dynamic daily hydration goals based on local temperature and humidity (via Apple WeatherKit)</li>
-        <li>Suggest regionally appropriate recipe ingredients and names</li>
     </ul>
+    <p>Regionally appropriate recipe suggestions are based on your device's time zone and region setting, <strong>not</strong> on your location. Your location is never sent to the AI.</p>
     <p>Location data is processed momentarily via Apple's WeatherKit framework. Coordinates are never logged, stored historically, or shared with third parties for advertising. You may restrict location access at any time in your device settings.</p>
 
     <h3>2.5 Subscription Data (RevenueCat)</h3>
-    <p>Premium subscription validation is managed through RevenueCat. RevenueCat receives anonymized transaction identifiers from Apple's App Store to verify entitlement status. The Service Provider does not have access to your payment card or billing details.</p>
+    <p>Premium subscription validation is managed through RevenueCat. RevenueCat receives a pseudonymous account identifier (the anonymous identifier from Sign in with Apple — never your name or email) and your App Store transaction and subscription status, in order to verify your entitlement across your devices. The Service Provider does not have access to your payment card or billing details.</p>
     <p>RevenueCat Privacy Policy: <a href="https://www.revenuecat.com/privacy" target="_blank">https://www.revenuecat.com/privacy</a></p>
 
     <h3>2.6 Technical Data</h3>
     <ul>
         <li>Device operating system version (for compatibility)</li>
         <li>App crash reports (processed locally; not transmitted to the Service Provider)</li>
-        <li>Notification interaction signals (stored locally to personalize smart notification timing)</li>
+        <li>App usage patterns — for example, which screens you open and the times you usually use the Application — stored only on your device to time reminders</li>
+        <li><strong>App integrity and configuration (Google Firebase App Check and Remote Config):</strong> To protect the AI service from abuse, requests are verified as coming from a genuine copy of the Application using Apple App Attest; configuration values are delivered via Firebase Remote Config. These use a Firebase installation identifier that is not linked to your name, email or account.</li>
     </ul>
     <p><strong>Lock Screen and Dynamic Island (Live Activity):</strong> If enabled, your daily water progress can be displayed on your Lock Screen and in the Dynamic Island. This information is rendered on your device only and is never transmitted anywhere. Because a Lock Screen is visible without unlocking your device, anyone with physical access to your phone could see this figure; you can turn the feature off at any time in app settings, or dismiss the activity directly from the Lock Screen.</p>
 
@@ -262,8 +265,9 @@
     <h2>3. Artificial Intelligence and Google Gemini API</h2>
     <p>The Application uses the Google Gemini API to power:</p>
     <ul>
-        <li>Personalized recipe generation</li>
-        <li>Food and supplement image analysis</li>
+        <li>Personalized recipe generation, including the daily recipe suggestion</li>
+        <li>Food, drink and supplement analysis from photos or typed text, including follow-up questions</li>
+        <li>Short coaching notes shown after you log a meal</li>
         <li>Smart notification content</li>
         <li>Weekly health coaching summaries</li>
     </ul>
@@ -277,7 +281,7 @@
     <p><strong>(b) Personalization data — only with your explicit AI health consent.</strong><br>
     Derived wellness signals (heart-rate variability trend, sleep duration, activity level), aggregated behavioural patterns learned on-device (for example, typical logging times), and weekly aggregate nutrition totals are transmitted <em>only</em> when you have enabled AI health personalization. These improve suggestion quality; they are not required for safety.</p>
 
-    <p>In addition, the following context may be transmitted when relevant to your request: age range, weight range, health goal type, dietary preference, local weather context (temperature and humidity) used to calculate dynamic hydration goals, and food or supplement images. This list is illustrative and not exhaustive; in all cases the data is de-identified and never accompanied by your name, email address, or account identifier.</p>
+    <p>In addition, the following context may be transmitted when relevant to your request: age range, weight range, health goal type, dietary preference, local weather context (temperature and humidity) used to calculate dynamic hydration goals, your country or region (derived from your device's time zone and region setting) so that suggestions fit your cuisine, the text you type, food or supplement images, and — only if you turned on <em>Share phase with AI</em> — the name of your current cycle phase. This list is illustrative and not exhaustive; in all cases the data is de-identified and never accompanied by your name, email address, or account identifier.</p>
 
     <p><strong>Critical safeguards:</strong></p>
     <ul>
@@ -321,6 +325,14 @@
                 <td>Apple Health app (Service Provider has no server copy)</td>
             </tr>
             <tr>
+                <td><strong>Cycle tracking data</strong></td>
+                <td>Your device and Apple Health (never sent to the AI; see Section 2.2)</td>
+            </tr>
+            <tr>
+                <td><strong>Barcode lookups</strong></td>
+                <td>Momentary — only the barcode number is sent to Open Food Facts</td>
+            </tr>
+            <tr>
                 <td><strong>Weather data</strong></td>
                 <td>Momentary — not stored</td>
             </tr>
@@ -329,12 +341,8 @@
                 <td>Momentary — discarded after Gemini analysis</td>
             </tr>
             <tr>
-                <td><strong>AI-generated dish illustrations</strong></td>
-                <td>Your device, plus a shared library on Google Firebase Storage keyed by a generic dish name (no user identifier)</td>
-            </tr>
-            <tr>
                 <td><strong>Subscription status</strong></td>
-                <td>RevenueCat (anonymized transaction ID)</td>
+                <td>RevenueCat (pseudonymous account identifier and transaction status)</td>
             </tr>
             <tr>
                 <td><strong>Payment details</strong></td>
@@ -385,7 +393,7 @@
     <p>Where processing is based on consent, you may withdraw it at any time without affecting the lawfulness of processing carried out before withdrawal. Withdrawal does not prevent you from continuing to use the Application's core features.</p>
 
     <h2>8. International Data Transfers</h2>
-    <p>Google LLC (Gemini API and Firebase Storage) and RevenueCat process data on servers located in the United States. Where such transfers occur from the EEA, the Service Provider relies on:</p>
+    <p>Google LLC (Gemini API, Firebase App Check and Remote Config) and RevenueCat process data on servers located in the United States. Barcode numbers are looked up in the Open Food Facts database, operated by a non-profit association based in France. Where such transfers occur from the EEA, the Service Provider relies on:</p>
     <ul>
         <li>Standard Contractual Clauses (SCCs) approved by the European Commission (Commission Implementing Decision (EU) 2021/914)</li>
         <li>Google LLC's and RevenueCat's participation in applicable data transfer frameworks</li>
@@ -476,7 +484,7 @@
     <p>The Application is not directed to children under the age of <strong>16</strong>. The Service Provider does not knowingly collect personal information from children under 16. If the Service Provider becomes aware that a child under 16 has provided personal information, that information will be deleted promptly. If you are a parent or legal guardian and believe your child has provided personal information to the Application, please contact: <a href="mailto:support.omniapp@gmail.com">support.omniapp@gmail.com</a></p>
 
     <h2>15. Security</h2>
-    <p>The Service Provider implements appropriate technical and organizational measures to protect personal data against unauthorized access, alteration, disclosure, or destruction. All data transmitted to external services (Gemini API, RevenueCat, WeatherKit) is encrypted in transit using industry-standard TLS. Locally stored data is protected by Apple's iOS Data Protection framework.</p>
+    <p>The Service Provider implements appropriate technical and organizational measures to protect personal data against unauthorized access, alteration, disclosure, or destruction. All data transmitted to external services (Gemini API, Firebase, RevenueCat, WeatherKit, Open Food Facts) is encrypted in transit using industry-standard TLS. Locally stored data is protected by Apple's iOS Data Protection framework.</p>
 
     <h2>16. Changes to This Privacy Policy</h2>
     <p>The Service Provider may update this Privacy Policy from time to time. For material changes, you will be notified via an in-app notification and the updated policy will be posted with a new effective date. Where required by applicable law (including GDPR), your consent will be sought before material changes take effect. Previous versions are available upon request at: <a href="mailto:support.omniapp@gmail.com">support.omniapp@gmail.com</a></p>
