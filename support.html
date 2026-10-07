@@ -1,100 +1,160 @@
-<!DOCTYPE html>
-<html lang="tr">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omni Health — Destek / Support</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #F7F5F0; /* Canva'da seçtiğimiz premium krem tonu */
-            color: #333333;
-            line-height: 1.6;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 80vh;
-        }
-        .container {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-        }
-        h1 {
-            color: #4E6542; /* Tasarımlarımızdaki matcha yeşili tonu */
-            font-size: 24px;
-            margin-bottom: 24px;
-            font-weight: 700;
-        }
-        .section {
-            margin-bottom: 20px;
-            padding: 10px 0;
-        }
-        .text-tr {
-            font-size: 16px;
-            font-weight: 500;
-            color: #444;
-            margin-bottom: 4px;
-        }
-        .text-en {
-            font-size: 15px;
-            color: #777;
-            font-style: italic;
-            margin-bottom: 12px;
-        }
-        .email-box {
-            background-color: #F0F4EE;
-            padding: 14px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border: 1px solid #E2EBE0;
-        }
-        .email-link {
-            color: #4E6542;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-        }
-        .email-link:hover {
-            text-decoration: underline;
-        }
-        .footer-tr {
-            font-size: 14px;
-            color: #666;
-            margin-top: 24px;
-        }
-        .footer-en {
-            font-size: 13px;
-            color: #999;
-            font-style: italic;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Omni Health Support</title>
+<meta name="description" content="Help and contact for Omni Health. Write to support@beyazlabs.com — we usually reply within 24–48 hours.">
+<link rel="icon" href="img/omni-icon.png">
+<style>
+  :root {
+    --night: #0B0709; --on-night: #F7EFF1; --on-night-muted: #B3A3A8;
+    --pink: #FE2C55; --lime: #A7FF00; --teal: #00C7BE;
+    --bg: #FBF8F6; --surface: #FFFFFF; --ink: #1B1316; --muted: #6E6266; --line: #EDE5E8; --accent: #D9123D;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #0F0A0C; --surface: #171013; --ink: #F6EFF1; --muted: #A99BA0; --line: #2A1E23; --accent: #FF5C7C; }
+  }
+  :root[data-theme="dark"] { --bg: #0F0A0C; --surface: #171013; --ink: #F6EFF1; --muted: #A99BA0; --line: #2A1E23; --accent: #FF5C7C; }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; border-radius: 8px; }
+  .wrap { width: min(860px, 100% - 40px); margin: 0 auto; }
+
+  nav.top { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(180%) blur(18px); -webkit-backdrop-filter: saturate(180%) blur(18px); background: rgba(11,7,9,.72); color: var(--on-night); border-bottom: 1px solid rgba(255,255,255,.06); }
+  nav.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 52px; width: min(1120px, 100% - 40px); }
+  .brand { font-weight: 700; text-decoration: none; letter-spacing: -0.01em; }
+  .brand span { color: var(--pink); }
+  nav.top a.back { color: var(--on-night-muted); text-decoration: none; font-size: 14px; }
+  nav.top a.back:hover { color: var(--on-night); }
+
+  header.hero { position: relative; background: var(--night); color: var(--on-night); padding: 72px 0 84px; overflow: hidden; }
+  header.hero::before { content: ""; position: absolute; left: 50%; top: 40%; width: 900px; height: 900px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(254,44,85,.20), transparent 60%); pointer-events: none; }
+  .app { position: relative; display: flex; gap: 18px; align-items: center; margin-bottom: 30px; }
+  .app img { width: 64px; height: 64px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+  .app b { display: block; font-size: 18px; }
+  .app small { color: var(--on-night-muted); font-size: 14px; }
+  h1 { position: relative; margin: 0 0 14px; font: 700 clamp(40px, 7vw, 72px)/1.02 var(--sans); letter-spacing: -0.04em; }
+  .hero p.lead { position: relative; margin: 0; color: var(--on-night-muted); font-size: 20px; max-width: 42ch; }
+  .hero p.lead span { display: block; font-size: 16px; opacity: .8; margin-top: 4px; }
+
+  .mail { position: relative; margin-top: 34px; display: inline-flex; align-items: center; gap: 12px; text-decoration: none;
+    background: var(--on-night); color: var(--night); padding: 15px 24px; border-radius: 999px; font-weight: 600; font-size: 18px; }
+  .mail:hover { opacity: .92; }
+  .mail svg { width: 20px; height: 20px; }
+  .reply { position: relative; display: block; margin-top: 14px; color: var(--on-night-muted); font-size: 14px; }
+
+  main { padding: 72px 0 40px; }
+  h2 { font: 700 clamp(28px, 4vw, 36px)/1.1 var(--sans); letter-spacing: -0.03em; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+
+  .faq { border-top: 1px solid var(--line); }
+  details { border-bottom: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 2px; font-weight: 600; font-size: 18px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-weight: 400; font-size: 24px; color: var(--muted); transition: transform .25s ease; }
+  details[open] summary::after { transform: rotate(45deg); }
+  summary small { display: block; font-weight: 400; font-size: 14px; color: var(--muted); margin-top: 2px; }
+  .ans { padding: 0 2px 22px; color: var(--muted); font-size: 16px; max-width: 64ch; }
+  .ans p { margin: 0 0 10px; }
+  .ans .tr { font-size: 15px; opacity: .85; }
+  .path { display: inline-block; color: var(--ink); background: color-mix(in srgb, var(--accent) 8%, transparent); border-radius: 8px; padding: 1px 8px; font-weight: 500; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 56px 0 0; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; text-decoration: none; }
+  .card:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+  .card b { display: block; margin-bottom: 4px; }
+  .card span { color: var(--muted); font-size: 14px; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--muted); font-size: 14px; margin-top: 56px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+  footer a { color: var(--muted); text-decoration: none; }
+  @media (max-width: 680px) { .cards { grid-template-columns: 1fr; } }
+</style>
 </head>
 <body>
+  <nav class="top" aria-label="Main">
+    <div class="wrap">
+      <a class="brand" href="./">Beyaz <span>Labs</span></a>
+      <a class="back" href="./#omni">Omni Health</a>
+    </div>
+  </nav>
 
-<div class="container">
-    <h1>Omni Health</h1>
-    
-    <div class="section">
-        <div class="text-tr">Soru, öneri ve sorun bildirimleri için:</div>
-        <div class="text-en">For questions, feedback and issue reports:</div>
+  <header class="hero">
+    <div class="wrap">
+      <div class="app">
+        <img src="img/omni-icon.png" alt="Omni Health app icon">
+        <div><b>Omni Health</b><small>Support · Destek</small></div>
+      </div>
+      <h1>How can we help?</h1>
+      <p class="lead">Questions, feedback or something not working? Write to us — a real person reads every message.
+        <span>Soru, öneri ya da bir sorun mu var? Bize yaz — her mesajı bir insan okuyor.</span></p>
+      <a class="mail" href="mailto:support@beyazlabs.com?subject=Omni%20Health%20Support">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+        support@beyazlabs.com
+      </a>
+      <span class="reply">We usually reply within 24–48 hours · Yanıt süresi genellikle 24–48 saat</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h2>Common questions</h2>
+    <p class="sub">Sık sorulanlar</p>
+
+    <div class="faq">
+      <details>
+        <summary><span>How do I delete my account?<small>Hesabımı nasıl silerim?</small></span></summary>
+        <div class="ans">
+          <p>Open <span class="path">Profile (avatar, top right) › Account Settings › Delete Account</span>. Your account and the data Omni stores are removed. Data you allowed Omni to write to Apple Health stays in the Health app, where you can delete it.</p>
+          <p class="tr">Profil (sağ üstteki avatar) › Hesap Ayarları › Hesabı Sil. Apple Sağlık'a yazılan veriler Sağlık uygulamasında kalır; oradan silebilirsin.</p>
+        </div>
+      </details>
+      <details>
+        <summary><span>How do I cancel or restore my subscription?<small>Aboneliğimi nasıl iptal eder ya da geri yüklerim?</small></span></summary>
+        <div class="ans">
+          <p>Subscriptions are managed by Apple: <span class="path">Settings › [your name] › Subscriptions › Omni Health</span>. Cancel at least 24 hours before renewal. On a new device, tap <b>Restore Purchases</b> on the Premium screen.</p>
+          <p class="tr">Abonelikleri Apple yönetir: Ayarlar › [adın] › Abonelikler › Omni Health. Yeni cihazda Premium ekranındaki "Satın Alımları Geri Yükle"ye dokun.</p>
+        </div>
+      </details>
+      <details>
+        <summary><span>Omni can't read or write Apple Health data<small>Omni Apple Sağlık verilerini okuyamıyor ya da yazamıyor</small></span></summary>
+        <div class="ans">
+          <p>Check <span class="path">Settings › Health › Data Access &amp; Devices › Omni Health</span> and turn on the categories you want to share. If you log a meal while write access is off, Omni tells you on the saved card.</p>
+          <p class="tr">Ayarlar › Sağlık › Veri Erişimi ve Aygıtlar › Omni Health'ten izinleri aç.</p>
+        </div>
+      </details>
+      <details>
+        <summary><span>How do AI features use my data?<small>Yapay zekâ özellikleri verimi nasıl kullanıyor?</small></span></summary>
+        <div class="ans">
+          <p>AI personalisation is opt-in and can be changed anytime in <span class="path">Profile › Notifications</span>. When it is on, a short summary is sent to Google Gemini only to write your suggestions; it is never used for ads or sold. Your name and email are not sent. AI content is not medical advice.</p>
+          <p class="tr">Yapay zekâ isteğe bağlıdır; Profil › Bildirimler'den açıp kapatabilirsin. Açıksa yalnızca öneri yazmak için kısa bir özet Google Gemini'ye gider; reklamda kullanılmaz, satılmaz.</p>
+        </div>
+      </details>
+      <details>
+        <summary><span>Cycle tracking<small>Döngü takibi</small></span></summary>
+        <div class="ans">
+          <p>Turn it on in <span class="path">Profile › Cycle Tracking</span>. Cycle data is stored in Apple Health and on your device; Omni keeps no copy on a server. With too few cycles logged, Omni won't predict dates — it tells you it is still learning.</p>
+          <p class="tr">Profil › Döngü Takibi'nden aç. Veriler Apple Sağlık'ta ve cihazında kalır.</p>
+        </div>
+      </details>
     </div>
 
-    <div class="email-box">
-        📧 <a href="mailto:support@beyazlabs.com" class="email-link">support@beyazlabs.com</a>
+    <div class="cards">
+      <a class="card" href="privacypolicy.html"><b>Privacy Policy</b><span>Gizlilik Politikası</span></a>
+      <a class="card" href="termsofuse.html"><b>Terms of Use</b><span>Kullanım Koşulları</span></a>
+      <a class="card" href="https://apps.apple.com/app/id6775592612"><b>App Store</b><span>Omni Health</span></a>
     </div>
+  </main>
 
-    <div class="section">
-        <div class="footer-tr">Yanıt süresi genellikle 24-48 saattir.</div>
-        <div class="footer-en">We usually respond within 24-48 hours.</div>
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Beyaz Labs · Made by Enes Beyaz</span>
+      <a href="mailto:support@beyazlabs.com">support@beyazlabs.com</a>
     </div>
-</div>
-
+  </footer>
 </body>
 </html>
