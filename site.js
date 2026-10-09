@@ -21,8 +21,8 @@
     ticking = false;
     if (reduce) return;
     const p = Math.min(Math.max(scrollY / (innerHeight * 0.8), 0), 1);
-    hero.style.setProperty('--p', p.toFixed(3));
-    stage.style.setProperty('--lift', (p * 120).toFixed(1));
+    if (hero) hero.style.setProperty('--p', p.toFixed(3));
+    if (stage) stage.style.setProperty('--lift', (p * 120).toFixed(1));
     if (vs) {
       const r = vs.getBoundingClientRect();
       const v = Math.min(Math.max((innerHeight - r.top) / (innerHeight + r.height), 0), 1);
@@ -35,6 +35,7 @@
   // Omni story: the active step is read from scroll position on every frame,
   // so scrolling down and back up always lands on the same screen.
   const stack = document.getElementById('pinScreen');
+  if (!stack) return;
   const shots = [...stack.querySelectorAll('.scr img')];
   const halo = document.getElementById('halo');
   const steps = [...document.querySelectorAll('.step')];
@@ -91,7 +92,7 @@ document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', ()
   if (reduce || !matchMedia('(hover: hover)').matches) return;
   // Hero glow follows pointer
   const hero = document.querySelector('.hero');
-  hero.addEventListener('pointermove', e => {
+  if (hero) hero.addEventListener('pointermove', e => {
     const r = hero.getBoundingClientRect();
     hero.style.setProperty('--gx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
     hero.style.setProperty('--gy', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
@@ -213,12 +214,16 @@ document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', ()
       sync();
     };
     const close = (b, focus) => {
-      b.setAttribute('aria-expanded', 'false'); b.parentElement.classList.remove('open');
+      const wrap = b.parentElement, menu = wrap.querySelector('.menu');
+      b.setAttribute('aria-expanded', 'false'); wrap.classList.remove('open');
+      // Fully hidden once the fade-out ends, so closed menus never read as page text.
+      clearTimeout(menu._t); menu._t = setTimeout(() => { if (!wrap.classList.contains('open')) menu.hidden = true; }, 240);
       if (focus) b.focus();
     };
     const open = (b) => {
       pks.forEach(o => o !== b && close(o));
       const wrap = b.parentElement, menu = wrap.querySelector('.menu');
+      clearTimeout(menu._t); menu.hidden = false; void menu.offsetWidth;
       wrap.classList.remove('flip'); wrap.classList.add('open'); b.setAttribute('aria-expanded', 'true');
       if (menu.getBoundingClientRect().right > innerWidth - 12) wrap.classList.add('flip');
       (menu.querySelector('[aria-selected=true]') || menu.firstElementChild).focus();
@@ -240,6 +245,10 @@ document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', ()
       });
     });
     document.addEventListener('click', e => pks.forEach(b => { if (!b.parentElement.contains(e.target)) close(b); }));
+    // Arriving from a case study (?svc=phone) preselects that service.
+    const want = new URLSearchParams(location.search).get('svc');
+    const wantLi = want && svc.parentElement.querySelector('[data-v="' + want + '"]');
+    if (wantLi) choose(svc, wantLi);
     inputs.forEach(f => f.addEventListener('input', () => { fit(f); sync(); }));
     const refit = () => inputs.forEach(fit);
     refit(); sync(); addEventListener('resize', refit);

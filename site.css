@@ -455,3 +455,52 @@
   .doc a:hover { border-bottom-color: var(--pink); }
   .doc .updated { margin-top: 36px; font-size: 14px; color: var(--on-night-muted); }
   .doc-page footer .legal a { color: inherit; }
+  .blank .menu[hidden] { display: none; }
+  .omni-cta .case-link { color: var(--on-night); text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(247,239,241,.35); padding-bottom: 2px; }
+  .omni-cta .case-link:hover { border-bottom-color: var(--pink); }
+
+  /* ── Case study (Omni Health) */
+  .cs-hero .cs-icon { display: block; margin: 0 auto 22px; width: 72px; height: 72px; border-radius: 17px; box-shadow: 0 18px 50px rgba(254,44,85,.35); }
+  .cs-hero h1 { max-width: 13ch; }
+  .cs-hero .cs-cta { display: flex; justify-content: center; margin-top: 28px; }
+  .cs-stats { background: var(--night); color: var(--on-night); padding: 40px 0 100px; }
+  .cs-stats dl { margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; border-top: 1px solid rgba(255,255,255,.08); padding-top: 36px; }
+  .cs-stats dt { font: 700 clamp(48px, 6vw, 80px)/1 var(--sans); letter-spacing: -0.05em; font-variant-numeric: tabular-nums;
+    background: linear-gradient(92deg, #FF6A88, var(--pink) 45%, #FF9F0A); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .08em; }
+  .cs-stats dd { margin: 10px 0 0; color: var(--on-night-muted); font-size: 16px; line-height: 1.45; max-width: 22ch; }
+  .cs-story, .cs-you { background: var(--bg); color: var(--ink); padding: 120px 0; }
+  .cs-story .sec-h em, .cs-you .sec-h em { color: var(--muted); font-style: normal; }
+  .cs-rows { margin-top: 56px; border-top: 1px solid var(--line); }
+  .cs-row { display: grid; grid-template-columns: 160px minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; padding: 34px 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .cs-row .k { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent, var(--pink)); padding-top: 8px; }
+  .cs-row h3 { margin: 0; font: 700 clamp(24px, 2.6vw, 32px)/1.15 var(--sans); letter-spacing: -0.03em; }
+  .cs-row p { margin: 4px 0 0; color: var(--muted); font-size: 17px; line-height: 1.6; }
+  .cs-decisions, .cs-craft { background: var(--night); color: var(--on-night); padding: 120px 0; }
+  .cs-decisions .sec-h em, .cs-craft .sec-h em { color: var(--on-night-muted); font-style: normal; }
+  .cs-dec { margin-top: 56px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; }
+  .cs-dec article { border-top: 1px solid rgba(255,255,255,.1); padding: 30px 0 34px; }
+  .cs-dec .tag { display: inline-block; font-size: 14px; font-weight: 600; color: var(--c); margin-bottom: 14px; }
+  .cs-dec h3 { margin: 0 0 10px; font: 700 clamp(24px, 2.6vw, 32px)/1.15 var(--sans); letter-spacing: -0.03em; }
+  .cs-dec p { margin: 0; color: var(--on-night-muted); font-size: 17px; line-height: 1.6; max-width: 46ch; }
+  .cs-craft-grid { margin: 56px 0 64px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .cs-craft-grid figure { margin: 0; text-align: center; }
+  .cs-craft-grid img { width: min(100%, 300px); height: auto; filter: drop-shadow(0 30px 60px rgba(0,0,0,.6)); }
+  .cs-craft-grid figcaption { margin-top: 18px; color: var(--on-night-muted); font-size: 15px; }
+  .cs-list { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 56px; }
+  .cs-list li { break-inside: avoid; padding: 16px 0; border-top: 1px solid rgba(255,255,255,.08); color: var(--on-night-muted); font-size: 17px; line-height: 1.5; }
+  .cs-list b { color: var(--on-night); font-weight: 600; }
+  .cs-cols { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+  .cs-cols > div { border-top: 2px solid var(--ink); padding-top: 22px; }
+  .cs-cols h3 { margin: 0 0 10px; font: 700 22px/1.2 var(--sans); letter-spacing: -0.02em; }
+  .cs-cols p { margin: 0; color: var(--muted); font-size: 17px; line-height: 1.6; }
+  .contact .btn-light span { transition: transform .3s ease; }
+  .contact .btn-light:hover span { transform: translateX(3px); }
+  @media (max-width: 860px) {
+    .cs-stats dl { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
+    .cs-row { grid-template-columns: 1fr; gap: 8px; padding: 28px 0; }
+    .cs-dec, .cs-cols { grid-template-columns: 1fr; }
+    .cs-craft-grid { grid-template-columns: 1fr; gap: 48px; }
+    .cs-craft-grid img { width: min(78%, 300px); }
+    .cs-list { columns: 1; }
+    .cs-story, .cs-you, .cs-decisions, .cs-craft { padding: 88px 0; }
+  }
