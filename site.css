@@ -504,3 +504,7 @@
     .cs-list { columns: 1; }
     .cs-story, .cs-you, .cs-decisions, .cs-craft { padding: 88px 0; }
   }
+  /* Case study lead: one sentence per line on wide screens, never split mid-thought */
+  .cs-hero p.lead { max-width: 60ch; }
+  .cs-hero p.lead span { display: block; text-wrap: balance; }
+  @media (max-width: 860px) { .cs-hero p.lead span { display: inline; } }
