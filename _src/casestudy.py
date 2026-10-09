@@ -19,8 +19,9 @@ PAGE = '''<!doctype html>
 <link rel="canonical" href="https://beyazlabs.com/{lang}/omni/">
 <link rel="alternate" hreflang="en" href="https://beyazlabs.com/en/omni/">
 <link rel="alternate" hreflang="tr" href="https://beyazlabs.com/tr/omni/">
-<link rel="icon" href="../../img/omni-icon.png">
-<link rel="apple-touch-icon" href="../../img/omni-icon.png">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../img/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="https://beyazlabs.com/img/{shot}omni-today.png">
