@@ -66,7 +66,7 @@
   }
   .hero::before {
     content: ""; position: absolute; left: 50%; top: 52%; width: 1100px; height: 1100px; transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(254,44,85,0.22), rgba(254,44,85,0.05) 40%, transparent 65%);
+    background: radial-gradient(circle, rgba(254,44,85,0.36), rgba(254,44,85,0.09) 40%, transparent 65%);
     pointer-events: none;
   }
   .eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); margin: 0 0 18px; }
@@ -429,3 +429,12 @@
   .blank .menu [role=option] { display: block; position: relative; padding: 11px 14px 11px 32px; }
   .blank .menu [role=option]::before { position: absolute; left: 14px; top: 50%; margin-top: -4px; }
   .blank .menu [role=option]::first-letter { text-transform: uppercase; }
+
+  /* Hero: the rotating word always sits on its own line, so the headline never changes height */
+  .hero h1 .rot { display: table; margin: 0 auto -.14em; }
+  /* Hero kicker links to the work: "Makers of Omni Health" */
+  a.avail { text-decoration: none; transition: border-color .3s ease, background .3s ease; }
+  a.avail:hover { border-color: rgba(255,255,255,.26); background: rgba(255,255,255,.08); }
+  .hero .avail img { width: 20px; height: 20px; border-radius: 5px; flex: none; }
+  .hero .avail .arr { color: var(--on-night-muted); transition: transform .3s ease; }
+  a.avail:hover .arr { transform: translateX(3px); }
