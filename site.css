@@ -351,19 +351,32 @@
   .svc-list .row .go { position: absolute; inset: 0 -24px; z-index: 1; border-radius: 22px; }
   .svc-list .row .go:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
   .svc-list .row { cursor: pointer; }
-  .pick { display: flex; flex-wrap: wrap; gap: 8px; margin: -8px 0 30px; max-width: 640px; }
-  .pick .pl { width: 100%; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--on-night-muted); margin-bottom: 4px; }
-  .pick button { font: 500 15px/1 var(--sans); color: var(--on-night); background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.16);
-    border-radius: 999px; padding: 10px 16px; cursor: pointer; display: inline-flex; align-items: center; gap: 0;
-    transition: background .3s ease, border-color .3s ease, gap .3s ease, transform .2s ease; }
-  .pick button::before { content: ""; width: 0; height: 8px; border-radius: 50%; background: var(--c); transition: width .3s ease; }
-  .pick button:hover { border-color: rgba(255,255,255,.34); }
-  .pick button:active { transform: scale(.96); }
-  .pick button[aria-pressed="true"] { background: color-mix(in srgb, var(--c) 20%, transparent); border-color: var(--c); gap: 8px; }
-  .pick button[aria-pressed="true"]::before { width: 8px; }
-  .pick button:focus-visible { outline: 2px solid var(--c); outline-offset: 3px; }
-  .pick button.flash { animation: pickFlash .9s ease .5s; }
-  @keyframes pickFlash { 0%, 100% { box-shadow: 0 0 0 0 transparent; } 40% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--c) 30%, transparent); } }
   @media (max-width: 860px) { .svc-list .row .go { inset: 0; } }
-  @media (prefers-reduced-motion: reduce) { .pick button, .pick button::before { transition: none; } .pick button.flash { animation: none; } }
   .svc-list .proof a { position: relative; z-index: 2; }
+
+  /* Contact letter: a sentence with blanks to fill in */
+  .compose { margin: 0; }
+  .contact .compose .letter { font: 600 clamp(26px, 3.4vw, 44px)/1.45 var(--sans); letter-spacing: -0.025em; color: var(--on-night);
+    max-width: 30em; margin: 4px 0 36px; text-wrap: pretty; }
+  .blank { position: relative; display: inline-block; white-space: nowrap; }
+  .blank input, .blank select { font: inherit; letter-spacing: inherit; line-height: 1.2; color: var(--c, var(--on-night));
+    background: transparent; border: 0; border-bottom: 2px dashed rgba(247,239,241,.30); border-radius: 0; margin: 0;
+    padding: 0 .08em .04em; outline: none; -webkit-appearance: none; appearance: none; min-width: 1.5em;
+    transition: border-color .3s ease, color .3s ease; }
+  .blank input { --c: var(--on-night); }
+  .blank input::placeholder { color: rgba(247,239,241,.30); }
+  .blank input:not(:placeholder-shown) { border-bottom: 2px solid rgba(247,239,241,.55); }
+  .blank input:focus { border-bottom: 2px solid var(--pink); }
+  .blank.sel select { cursor: pointer; padding-right: .75em; border-bottom: 2px solid color-mix(in srgb, var(--c) 70%, transparent); }
+  .blank.sel select:hover, .blank.sel select:focus { border-bottom-color: var(--c); }
+  .blank select option { color: #1B1316; background: #fff; }
+  .blank.sel svg { position: absolute; right: .06em; top: 52%; width: .42em; height: .42em; transform: translateY(-50%); color: var(--c); pointer-events: none; }
+  .blank input:focus-visible, .blank select:focus-visible { box-shadow: 0 6px 0 -3px var(--c, var(--pink)); }
+  .blank.flash { animation: blankFlash 1.1s ease .5s; border-radius: 10px; }
+  @keyframes blankFlash { 0%, 100% { box-shadow: 0 0 0 0 transparent; background: transparent; } 35% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--c) 18%, transparent); background: color-mix(in srgb, var(--c) 18%, transparent); } }
+  .contact .hint { color: var(--on-night-muted); font-size: 14px; max-width: 40ch; line-height: 1.5; }
+  .contact .hint a { color: var(--on-night); text-decoration: none; border-bottom: 1px solid rgba(247,239,241,.35); }
+  @media (max-width: 860px) { .blank { white-space: normal; } .blank input, .blank select { max-width: 100%; } }
+  @media (prefers-reduced-motion: reduce) { .blank.flash { animation: none; } }
+  .blank.sel { --c: var(--on-night); }
+  .blank + .blank, .blank { margin: 0 .04em; }

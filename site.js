@@ -175,24 +175,45 @@ document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', ()
     care: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4"/></svg>',
     social: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg>'
   };
-  // ── Contact: pick what you need; a service row preselects its chip.
-  const pick = document.getElementById('pick'), mail = document.getElementById('mailBtn');
-  if (pick && mail) {
-    const chips = [...pick.querySelectorAll('button')];
-    const sync = () => {
-      const sel = chips.filter(c => c.getAttribute('aria-pressed') === 'true').map(c => c.textContent.trim());
-      const subj = mail.dataset.subj + (sel.length ? ': ' + sel.join(', ') : '');
-      mail.href = 'mailto:enes@beyazlabs.com?subject=' + encodeURIComponent(subj) +
-        '&body=' + encodeURIComponent(decodeURIComponent(mail.dataset.body));
+  // ── Contact: a letter with blanks. Filling it in writes the email.
+  const form = document.getElementById('compose'), mail = document.getElementById('mailBtn');
+  if (form && mail) {
+    const fields = [...form.querySelectorAll('input, select')];
+    const svc = document.getElementById('fSvc'), biz = document.getElementById('fBiz');
+    const ruler = document.createElement('span');
+    ruler.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;left:-9999px;top:0';
+    form.appendChild(ruler);
+    // Each blank is exactly as wide as what is (or could be) written in it.
+    const fit = (f) => {
+      const cs = getComputedStyle(f);
+      ruler.style.font = cs.font; ruler.style.letterSpacing = cs.letterSpacing;
+      ruler.textContent = f.tagName === 'SELECT' ? f.options[f.selectedIndex].text : (f.value || f.placeholder);
+      const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+      f.style.width = Math.ceil(ruler.getBoundingClientRect().width + pad + 2) + 'px';
     };
-    chips.forEach(c => c.addEventListener('click', () => {
-      c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); sync();
-    }));
+    const sync = () => {
+      const opt = svc.options[svc.selectedIndex];
+      svc.parentElement.style.setProperty('--c', opt.dataset.c);
+      let text = '';
+      form.querySelector('.letter').childNodes.forEach(n => {
+        if (n.nodeType === 3) { text += n.textContent; return; }
+        const f = n.querySelector('input, select');
+        text += f.tagName === 'SELECT' ? f.options[f.selectedIndex].text : (f.value.trim() || '…');
+      });
+      const subj = form.dataset.subj + ': ' + opt.text + (biz.value.trim() ? ' · ' + biz.value.trim() : '');
+      mail.href = 'mailto:enes@beyazlabs.com?subject=' + encodeURIComponent(subj) +
+        '&body=' + encodeURIComponent(text.replace(/\s+/g, ' ').trim() + '\n\n' + form.dataset.tail + '\n');
+    };
+    fields.forEach(f => {
+      f.addEventListener('input', () => { fit(f); sync(); });
+      f.addEventListener('change', () => { fit(f); sync(); });
+    });
+    const refit = () => fields.forEach(fit);
+    refit(); sync(); addEventListener('resize', refit);
+    if (document.fonts) document.fonts.ready.then(refit);
     document.querySelectorAll('.svc-list .go').forEach(a => a.addEventListener('click', () => {
-      const c = chips.find(c => c.dataset.k === a.dataset.pick);
-      if (!c) return;
-      c.setAttribute('aria-pressed', 'true'); sync();
-      c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash');
+      svc.value = a.dataset.pick; fit(svc); sync();
+      const b = svc.parentElement; b.classList.remove('flash'); void b.offsetWidth; b.classList.add('flash');
     }));
   }
 

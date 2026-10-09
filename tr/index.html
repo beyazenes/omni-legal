@@ -137,7 +137,7 @@
     <div class="wrap">
       <p class="eyebrow reveal">Nasıl çalışıyoruz</p>
       <h2 id="how" class="reveal split">Küçük stüdyo. <em>Büyük özen.</em></h2>
-      <p class="lit" id="lit"><b style="--c:var(--pink)">Tek muhatap.</b> Projeyi dinleyen, tasarlayan ve teslim eden aynı kişi. Mesajınız bir kuyrukta beklemez. <b style="--c:var(--lime)">Önce telefon.</b> Müşterileriniz sizi ilk telefonda görür; biz de oradan başlarız. Sonra bilgisayar, sonra gerisi — hepsi de hızlı. <b style="--c:var(--teal)">Sürprizler doğum günlerine.</b> Kapsam ve fiyat baştan net. Fatura günü kimse şaşırmaz.</p>
+      <p class="lit" id="lit"><b style="--c:var(--pink)">Tek muhatap.</b> Projeyi dinleyen, tasarlayan ve teslim eden aynı kişi. Mesajınız bir kuyrukta beklemez. <b style="--c:var(--lime)">Önce mobil.</b> Müşterileriniz sizi ilk telefonda görür; biz de oradan başlarız. Sonra bilgisayar, sonra gerisi. Hepsi de hızlı. <b style="--c:var(--teal)">Sürprizler doğum günlerine.</b> Kapsam ve fiyat baştan net. Fatura günü kimse şaşırmaz.</p>
     </div>
   </section>
 
@@ -146,21 +146,17 @@
       <div class="box reveal">
         <p class="eyebrow">Konuşalım</p>
         <h2 id="ct-title" class="split">Aklınızda bir proje mi var?</h2>
-        <p>Ne istediğinizi birkaç cümleyle yazın; fikirlerimiz ve net bir fiyat teklifiyle dönelim — genellikle bir gün içinde.</p>
-        <div class="pick" id="pick" role="group" aria-label="Neye ihtiyacınız var?">
-          <span class="pl">Neye ihtiyacınız var?</span>
-          <button type="button" data-k="web" style="--c:#FE2C55" aria-pressed="false">Web siteleri</button>
-          <button type="button" data-k="cart" style="--c:#FF9F0A" aria-pressed="false">E-ticaret</button>
-          <button type="button" data-k="phone" style="--c:#7ACB00" aria-pressed="false">iPhone uygulamaları</button>
-          <button type="button" data-k="care" style="--c:#00C7BE" aria-pressed="false">Bakım ve güncelleme</button>
-          <button type="button" data-k="social" style="--c:#AF52DE" aria-pressed="false">Sosyal medya içerikleri</button>
-        </div>
-        <div class="actions">
-          <a class="btn-light" id="mailBtn" href="mailto:enes@beyazlabs.com?subject=Yeni%20proje" data-subj="Yeni proje" data-body="Merhaba Enes,%0A%0AAklımdaki proje:%0A">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
-            enes@beyazlabs.com
-          </a>
-        </div>
+        <p>Boşlukları doldurun, mailiniz kendiliğinden yazılsın. Genellikle bir gün içinde fikirler ve net bir fiyatla döneriz.</p>
+        <form class="compose" id="compose" action="mailto:enes@beyazlabs.com" onsubmit="return false" data-subj="Yeni proje" data-tail="Biraz daha detay:">
+          <p class="letter">Merhaba Enes, ben <span class="blank"><input id="fName" type="text" autocomplete="name" placeholder="adınız" aria-label="adınız" spellcheck="false"></span>. <span class="blank"><input id="fBiz" type="text" autocomplete="organization" placeholder="işletmenizin adı" aria-label="işletmenizin adı" spellcheck="false"></span> için <span class="blank sel" style="--c:#FE2C55"><select id="fSvc" aria-label="Hizmet"><option value="web" data-c="#FE2C55">bir web sitesi</option><option value="cart" data-c="#FF9F0A">bir online mağaza</option><option value="phone" data-c="#7ACB00">bir iPhone uygulaması</option><option value="care" data-c="#00C7BE">bakım ve güncelleme</option><option value="social" data-c="#AF52DE">sosyal medya içerikleri</option><option value="more" data-c="#F7EFF1">birkaç şey</option></select><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> istiyoruz ve <span class="blank sel"><select id="fWhen" aria-label="Ne zaman"><option value="now">hemen</option><option value="month">bu ay</option><option value="months">birkaç ay içinde</option><option value="later">acele etmeden</option></select><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> başlamak isteriz.</p>
+          <div class="actions">
+            <a class="btn-light" id="mailBtn" href="mailto:enes@beyazlabs.com?subject=Yeni%20proje">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+              Maili hazırla
+            </a>
+            <span class="hint">Mail uygulamanız açılır, göndermeden önce düzenleyebilirsiniz. Ya da doğrudan yazın: <a href="mailto:enes@beyazlabs.com">enes@beyazlabs.com</a></span>
+          </div>
+        </form>
         <div class="meta">
           <span><b>Nerede</b> Türkiye geneli ve yurt dışı, uzaktan</span>
           <span><b>Diller</b> Türkçe, İngilizce</span>
