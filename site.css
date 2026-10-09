@@ -415,3 +415,17 @@
   @media (prefers-reduced-motion: reduce) { .contact .box { transition: none; } }
   .blank { margin: 0 .02em; }
   .blank input { padding: 0 .04em .04em; }
+
+  /* Hero: availability pill */
+  .hero .avail { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 22px; padding: 8px 16px 8px 13px; border-radius: 999px;
+    font-size: 14px; font-weight: 500; color: var(--on-night); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+  .hero .avail .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); flex: none; }
+  .hero .avail .dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--lime); animation: availPulse 2s ease-out infinite; }
+  @keyframes availPulse { 0% { transform: scale(1); opacity: .7; } 80%, 100% { transform: scale(3); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .hero .avail .dot::after { animation: none; } }
+
+  /* Menu options read as a list: capitalised, dot in its own gutter */
+  .blank .menu [role=option] { display: block; position: relative; padding: 11px 14px 11px 32px; }
+  .blank .menu [role=option]::before { position: absolute; left: 14px; top: 50%; margin-top: -4px; }
+  .blank .menu [role=option]::first-letter { text-transform: uppercase; }
