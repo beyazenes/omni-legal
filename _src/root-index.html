@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyaz Labs</title>
+<meta name="description" content="Beyaz Labs — iPhone apps, websites, online stores and social content. / iPhone uygulamaları, web siteleri, e-ticaret ve sosyal medya içerikleri.">
+<link rel="alternate" hreflang="en" href="https://beyazlabs.com/en/">
+<link rel="alternate" hreflang="tr" href="https://beyazlabs.com/tr/">
+<link rel="alternate" hreflang="x-default" href="https://beyazlabs.com/">
+<link rel="icon" href="img/omni-icon.png">
+<meta name="theme-color" content="#0B0709">
+<script>
+  // Önce kullanıcının seçtiği dil, yoksa tarayıcı dili: Türkçe → /tr/, diğerleri → /en/
+  (function () {
+    var l = null;
+    try { l = localStorage.getItem('lang'); } catch (e) {}
+    if (l !== 'tr' && l !== 'en') {
+      var ls = navigator.languages || [navigator.language || 'en'];
+      l = ls.some(function (x) { return /^tr\b/i.test(x); }) ? 'tr' : 'en';
+    }
+    location.replace('/' + l + '/' + location.hash);
+  })();
+</script>
+<style>body{margin:0;background:#0B0709;color:#F7EFF1;font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;display:grid;place-items:center;min-height:100vh}a{color:#FE2C55;margin:0 10px}</style>
+</head>
+<body>
+  <p>Beyaz Labs — <a href="/en/" hreflang="en">English</a> · <a href="/tr/" hreflang="tr">Türkçe</a></p>
+</body>
+</html>
