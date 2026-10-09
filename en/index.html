@@ -16,7 +16,7 @@
 <meta property="og:description" content="Beyaz Labs is an independent studio building iPhone apps, websites, online stores and social content — in Turkey and worldwide. Makers of Omni Health.">
 <meta property="og:image" content="https://beyazlabs.com/img/omni-today.png">
 <meta property="og:locale" content="en_US">
-<link rel="stylesheet" href="../site.css">
+<link rel="stylesheet" href="../site.css?v=202610091244">
 </head>
 <body>
   <nav class="top" aria-label="Main">
@@ -167,17 +167,21 @@
       <div class="box reveal">
         <p class="eyebrow">Let’s talk</p>
         <h2 id="ct-title" class="split">Have a project in mind?</h2>
-        <p>Fill in the blanks and your email writes itself. We usually reply within a day with ideas and a clear quote.</p>
-        <form class="compose" id="compose" action="mailto:enes@beyazlabs.com" onsubmit="return false" data-subj="New project" data-tail="A bit more about it:">
-          <p class="letter">Hi Enes, I’m <span class="blank"><input id="fName" type="text" autocomplete="name" placeholder="your name" aria-label="your name" spellcheck="false"></span>. We’d like <span class="blank sel" style="--c:#FE2C55"><select id="fSvc" aria-label="Service"><option value="web" data-c="#FE2C55">a website</option><option value="cart" data-c="#FF9F0A">an online store</option><option value="phone" data-c="#7ACB00">an iPhone app</option><option value="care" data-c="#00C7BE">care and updates</option><option value="social" data-c="#AF52DE">social media content</option><option value="more" data-c="#F7EFF1">a few things</option></select><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> for <span class="blank"><input id="fBiz" type="text" autocomplete="organization" placeholder="your business" aria-label="your business" spellcheck="false"></span>, and we’d like to start <span class="blank sel"><select id="fWhen" aria-label="When"><option value="now">right away</option><option value="month">this month</option><option value="months">in a few months</option><option value="later">whenever suits</option></select><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>.</p>
-          <div class="actions">
-            <a class="btn-light" id="mailBtn" href="mailto:enes@beyazlabs.com?subject=New%20project">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
-              Write the email
-            </a>
-            <span class="hint">Your mail app opens, so you can edit before sending. Or write directly: <a href="mailto:enes@beyazlabs.com">enes@beyazlabs.com</a></span>
-          </div>
-        </form>
+        <p>Tell us what you need in a few sentences. We’ll reply with ideas and a clear quote, usually within a day.</p>
+        <div class="pick" id="pick" role="group" aria-label="What do you need?">
+          <span class="pl">What do you need?</span>
+          <button type="button" data-k="web" style="--c:#FE2C55" aria-pressed="false">Websites</button>
+          <button type="button" data-k="cart" style="--c:#FF9F0A" aria-pressed="false">Online stores</button>
+          <button type="button" data-k="phone" style="--c:#7ACB00" aria-pressed="false">iPhone apps</button>
+          <button type="button" data-k="care" style="--c:#00C7BE" aria-pressed="false">Care & updates</button>
+          <button type="button" data-k="social" style="--c:#AF52DE" aria-pressed="false">Social content</button>
+        </div>
+        <div class="actions">
+          <a class="btn-light" id="mailBtn" href="mailto:enes@beyazlabs.com?subject=New%20project" data-subj="New project" data-body="Hi Enes,%0A%0AWhat I have in mind:%0A">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+            enes@beyazlabs.com
+          </a>
+        </div>
         <div class="meta">
           <span><b>Where</b> Turkey & worldwide, remote</span>
           <span><b>Languages</b> Turkish, English</span>
@@ -228,6 +232,6 @@
     </div>
   </footer>
 
-<script src="../site.js"></script>
+<script src="../site.js?v=202610091244"></script>
 </body>
 </html>
