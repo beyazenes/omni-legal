@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+import os
+# Çıktılar depo köküne yazılır (en/, tr/ …); kaynak dosyalar bu klasörde.
+SRC = os.path.dirname(os.path.abspath(__file__))
+os.chdir(os.path.dirname(SRC))
 # Builds the Omni Health case study: /tr/omni/ and /en/omni/
 # Every claim here is something the shipped app actually does — no invented metrics.
 import os, time

@@ -1,13 +1,14 @@
 # Site kaynakları
 
-GitHub Pages (Jekyll) `_` ile başlayan klasörleri yayınlamaz; bu dosyalar sadece kaynak.
+GitHub Pages (Jekyll) `_` ile başlayan klasörleri yayınlamaz; bu dosyalar yalnız kaynak.
 
-Yeniden üretmek için bu klasörün bir kopyasında, yanında `site.css`, `site.js` ve `img/` ile:
+Depo kökünden çalıştır (çıktılar doğrudan `en/`, `tr/` … altına yazılır):
 
 ```
-python3 build.py      # en/index.html, tr/index.html  (template.html'den)
-python3 casestudy.py  # en/omni/, tr/omni/
-python3 privacy.py    # en/privacy/, tr/gizlilik/
+python3 _src/build.py      # en/index.html, tr/index.html   (template.html'den)
+python3 _src/casestudy.py  # en/omni/, tr/omni/             (Omni proje hikâyesi)
+python3 _src/privacy.py    # en/privacy/, tr/gizlilik/      (site gizliliği)
 ```
 
-Sonra üretilen dosyaları depo köküne kopyala. Her derleme CSS/JS adresine `?v=` sürüm damgası basar (önbellek kırıcı).
+Her derleme CSS/JS adresine `?v=` sürüm damgası basar (önbellek kırıcı) — üçünü de
+çalıştır ki tüm sayfalar aynı `site.css` sürümünü istesin.

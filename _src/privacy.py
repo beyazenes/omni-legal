@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+import os
+# Çıktılar depo köküne yazılır (en/, tr/ …); kaynak dosyalar bu klasörde.
+SRC = os.path.dirname(os.path.abspath(__file__))
+os.chdir(os.path.dirname(SRC))
 # Builds the studio's own (site) privacy pages: /tr/gizlilik/ and /en/privacy/
 import os, time
 VER = time.strftime('%Y%m%d%H%M')

@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+import os
+# Çıktılar depo köküne yazılır (en/, tr/ …); kaynak dosyalar bu klasörde.
+SRC = os.path.dirname(os.path.abspath(__file__))
+os.chdir(os.path.dirname(SRC))
 import os, re
-T = open('template.html', encoding='utf-8').read()
+T = open(os.path.join(SRC, 'template.html'), encoding='utf-8').read()
 VERSED = """  <section class="versed" id="versed" aria-labelledby="versed-title">
     <div class="wrap grid">
       <div class="reveal">
