@@ -283,3 +283,66 @@
   @media (prefers-reduced-motion: reduce) {
     .hero h1 .rot, .svc .c { transition: none; } .svc .c:hover { transform: none; }
   }
+
+  /* ── Gradient word: room for descenders (g, y, ğ) */
+  .hero h1 em { display: inline-block; padding: 0 .04em .14em; margin: 0 -.04em -.14em; }
+
+  /* ── Omni story: text starts level with the phone */
+  .omni-head { margin-bottom: 36px; }
+  @media (min-width: 861px) {
+    .step { min-height: 72vh; justify-content: flex-start; padding-top: 12vh; }
+    .steps .step:first-child { padding-top: 16vh; }
+  }
+
+  /* ── Headline words rise */
+  .split .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .14em; margin-bottom: -.14em; }
+  .split .w > span { display: inline-block; transform: translateY(110%); transition: transform .9s cubic-bezier(.2,.75,.2,1); }
+  .split.up .w > span { transform: none; }
+  .js .reveal.split:not(.in) { opacity: 1; transform: none; }
+
+  /* ── Services: numbered rows */
+  .svc-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .svc-list .row { position: relative; display: grid; grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.15fr) 40px; gap: 24px; align-items: start;
+    padding: 34px 0 36px; border-bottom: 1px solid var(--line); isolation: isolate; cursor: default; }
+  .svc-list .row::before { content: ""; position: absolute; inset: 0 -24px; z-index: -1; border-radius: 22px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--c) 12%, transparent), color-mix(in srgb, var(--c) 3%, transparent));
+    transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.2,.75,.2,1); }
+  .svc-list .n { font: 600 14px/1 var(--sans); letter-spacing: .1em; color: var(--muted); padding-top: 14px; transition: color .4s ease; }
+  .svc-list h3 { margin: 0; font: 700 clamp(28px, 3.6vw, 46px)/1.05 var(--sans); letter-spacing: -0.035em; transition: transform .6s cubic-bezier(.2,.75,.2,1), color .4s ease; }
+  .svc-list .d p { margin: 6px 0 14px; color: var(--muted); font-size: 17px; max-width: 46ch; }
+  .svc-list .t { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .svc-list .t li { font-size: 13px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; color: var(--ink); background: var(--bg); }
+  .svc-list .proof { margin: 14px 0 0 !important; font-size: 14px !important; }
+  .svc-list .proof a { color: var(--ink); font-weight: 600; text-decoration: none; border-bottom: 1px solid currentColor; }
+  .svc-list .arr { font-size: 26px; color: var(--muted); padding-top: 10px; transition: transform .5s cubic-bezier(.2,.75,.2,1), color .4s ease; }
+  @media (hover: hover) {
+    .svc-list .row:hover::before { transform: scaleX(1); }
+    .svc-list .row:hover h3 { transform: translateX(10px); color: color-mix(in srgb, var(--c) 70%, var(--ink)); }
+    .svc-list .row:hover .n { color: var(--c); }
+    .svc-list .row:hover .arr { transform: translateX(6px) rotate(-45deg); color: var(--c); }
+    .svc-list .row:hover .t li { border-color: color-mix(in srgb, var(--c) 35%, var(--line)); }
+  }
+  .svc-cursor { position: fixed; left: 0; top: 0; width: 96px; height: 96px; margin: -48px 0 0 -48px; border-radius: 50%; z-index: 40; pointer-events: none;
+    display: grid; place-items: center; color: #fff; background: var(--c, #FE2C55);
+    box-shadow: 0 20px 40px -12px color-mix(in srgb, var(--c, #FE2C55) 60%, transparent);
+    opacity: 0; scale: .4; transition: opacity .3s ease, scale .45s cubic-bezier(.2,.75,.2,1), background .35s ease; }
+  .svc-cursor.on { opacity: 1; scale: 1; }
+  .svc-cursor svg { width: 34px; height: 34px; }
+  @media (max-width: 860px) {
+    .svc-list .row { grid-template-columns: 44px minmax(0, 1fr); gap: 6px 14px; padding: 26px 0 28px; }
+    .svc-list .d { grid-column: 2; }
+    .svc-list .arr { display: none; }
+    .svc-list .n { padding-top: 10px; color: var(--c); }
+  }
+
+  /* ── "How we build": statement that lights up */
+  .principles .lit { position: relative; margin: 0; max-width: 30ch; font: 700 clamp(30px, 4.4vw, 56px)/1.18 var(--sans); letter-spacing: -0.035em; text-wrap: pretty; }
+  .principles .lit .w { display: inline; }
+  .principles .lit .w > span { color: rgba(247,239,241,.16); transition: color .35s ease; }
+  .principles .lit .w.on > span { color: var(--on-night); }
+  .principles .lit b .w.on > span { color: var(--c); }
+  .principles .lit b { font-weight: 700; }
+  .principles h2 { margin-bottom: 48px; }
+  @media (prefers-reduced-motion: reduce) {
+    .split .w > span { transform: none; transition: none; }
+  }

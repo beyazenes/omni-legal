@@ -23,9 +23,11 @@
     const p = Math.min(Math.max(scrollY / (innerHeight * 0.8), 0), 1);
     hero.style.setProperty('--p', p.toFixed(3));
     stage.style.setProperty('--lift', (p * 120).toFixed(1));
-    const r = vs.getBoundingClientRect();
-    const v = Math.min(Math.max((innerHeight - r.top) / (innerHeight + r.height), 0), 1);
-    vs.style.setProperty('--vp', (v - 0.5).toFixed(3));
+    if (vs) {
+      const r = vs.getBoundingClientRect();
+      const v = Math.min(Math.max((innerHeight - r.top) / (innerHeight + r.height), 0), 1);
+      vs.style.setProperty('--vp', (v - 0.5).toFixed(3));
+    }
   };
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
@@ -91,4 +93,78 @@ document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', ()
     });
     c.addEventListener('pointerleave', () => { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
   });
+})();
+
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Headlines: words rise out of an invisible line, one after another.
+  const split = (el) => {
+    let k = 0;
+    const walk = (node) => {
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            const w = document.createElement('span'); w.className = 'w';
+            const i = document.createElement('span'); i.textContent = part; i.style.transitionDelay = (k++ * 0.06) + 's';
+            w.appendChild(i); frag.appendChild(w);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) walk(n);
+      });
+    };
+    walk(el);
+  };
+  if (!reduce) {
+    const heads = document.querySelectorAll('.split');
+    heads.forEach(split);
+    const ho = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('up'); ho.unobserve(e.target); }
+    }), { threshold: 0.3 });
+    heads.forEach(h => ho.observe(h));
+  }
+
+  // ── "How we build": words light up as you scroll through the section.
+  const lit = document.getElementById('lit');
+  if (lit) {
+    if (!reduce) split(lit);
+    const words = [...lit.querySelectorAll('.w')];
+    lit.querySelectorAll('.w > span').forEach(s => s.style.transitionDelay = '0s');
+    const sec = lit.closest('section');
+    const paint = () => {
+      const r = lit.getBoundingClientRect();
+      const p = Math.min(Math.max((innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.35), 0), 1);
+      const n = Math.round(p * words.length);
+      words.forEach((w, i) => w.classList.toggle('on', i < n));
+    };
+    if (reduce) words.forEach(w => w.classList.add('on'));
+    else { addEventListener('scroll', paint, { passive: true }); addEventListener('resize', paint); paint(); }
+  }
+
+  // ── Services: a colored bubble with the service icon follows the pointer.
+  const list = document.getElementById('svcList'), cur = document.getElementById('svcCursor');
+  const icons = {
+    web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2.5"/><path d="M3 8h18M8 21h8M12 18v3"/></svg>',
+    cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h2l2.2 10.2a2 2 0 0 0 2 1.6h6.9a2 2 0 0 0 1.9-1.5L21 8H7"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg>',
+    phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.8"/><path d="M10.5 5.5h3"/></svg>',
+    care: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4"/></svg>',
+    social: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg>'
+  };
+  if (list && cur && !reduce && matchMedia('(hover: hover) and (min-width: 861px)').matches) {
+    let x = 0, y = 0, tx = 0, ty = 0, raf = 0;
+    const loop = () => { x += (tx - x) * 0.18; y += (ty - y) * 0.18; cur.style.transform = `translate(${x}px, ${y}px)`; raf = requestAnimationFrame(loop); };
+    list.querySelectorAll('.row').forEach(r => {
+      r.addEventListener('pointerenter', () => {
+        cur.innerHTML = icons[r.dataset.ic] || '';
+        cur.style.setProperty('--c', getComputedStyle(r).getPropertyValue('--c'));
+        cur.classList.add('on');
+      });
+    });
+    list.addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; });
+    list.addEventListener('pointerenter', e => { x = tx = e.clientX; y = ty = e.clientY; if (!raf) loop(); });
+    list.addEventListener('pointerleave', () => { cur.classList.remove('on'); cancelAnimationFrame(raf); raf = 0; });
+  }
 })();

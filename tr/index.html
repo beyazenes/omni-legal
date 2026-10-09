@@ -41,52 +41,32 @@
       <p class="lead">iPhone uygulamaları, web siteleri, e-ticaret mağazaları ve sosyal medya içerikleri üreten bağımsız bir stüdyo. Sade, hızlı ve uzun ömürlü.</p>
     </div>
     <div class="stage" id="stage" aria-hidden="true">
-      <img class="device d1" src="../img/omni-rhythm.png" alt="">
-      <img class="device d2" src="../img/omni-today.png" alt="">
-      <img class="device d3" src="../img/omni-cook.png" alt="">
+      <img class="device d1" src="../img/tr/omni-rhythm.png" alt="">
+      <img class="device d2" src="../img/tr/omni-today.png" alt="">
+      <img class="device d3" src="../img/tr/omni-cook.png" alt="">
     </div>
   </header>
 
   <section class="services" id="services" aria-labelledby="svc-title">
     <div class="wrap">
       <p class="eyebrow reveal">Hizmetler</p>
-      <h2 class="sec-h reveal" id="svc-title">İnternette iyi görünmek için <em>ihtiyacınız olan her şey.</em></h2>
+      <h2 class="sec-h reveal split" id="svc-title">İnternette iyi görünmek için <em>ihtiyacınız olan her şey.</em></h2>
       <p class="sec-lead reveal">İlk web sitenizden tam bir iPhone uygulamasına kadar. Tek stüdyo, tek muhatap; Türkçe ya da İngilizce.</p>
-      <div class="svc">
-        <article class="c wide reveal" style="--c:#FE2C55">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2.5"/><path d="M3 8h18M8 21h8M12 18v3"/></svg></div>
-          <h3>Web siteleri</h3><p>Hızlı açılan, telefonda kusursuz görünen ve kolayca güncellenebilen kurumsal ve tanıtım siteleri.</p>
-          <ul><li>Kurumsal</li><li>Tanıtım sayfası</li><li>İki dilli</li><li>SEO temelleri</li></ul>
-        </article>
-        <article class="c wide reveal" style="--c:#FF9F0A; transition-delay:.06s">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h2l2.2 10.2a2 2 0 0 0 2 1.6h6.9a2 2 0 0 0 1.9-1.5L21 8H7"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/></svg></div>
-          <h3>E-ticaret</h3><p>İkas ya da Shopify üzerinde kendi mağazanız; pazar yeri komisyonu yok. Ödeme, kargo, yasal sayfalar ve eğitim dahil.</p>
-          <ul><li>Kurulum ve tasarım</li><li>Ödeme</li><li>Kargo</li><li>Ürün yükleme</li></ul>
-        </article>
-        <article class="c reveal" style="--c:#7ACB00; --c2:#5E9100">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.8"/><path d="M10.5 5.5h3"/></svg></div>
-          <h3>iPhone uygulamaları</h3><p>iPhone, iPad ve Apple Watch için yerel uygulamalar; fikirden App Store’a.</p>
-          <ul><li>SwiftUI</li><li>HealthKit</li><li>Widget</li></ul>
-          <p class="proof">Yayında görün: <a href="#omni">Omni Health</a></p>
-        </article>
-        <article class="c reveal" style="--c:#00C7BE; --c2:#00918A; transition-delay:.06s">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4"/></svg></div>
-          <h3>Bakım ve güncelleme</h3><p>Aylık içerik güncellemeleri, küçük değişiklikler ve kontroller; siteniz hiç eskimesin.</p>
-          <ul><li>Aylık paket</li><li>İçerik düzenleme</li><li>Yedekleme</li></ul>
-        </article>
-        <article class="c reveal" style="--c:#AF52DE; transition-delay:.12s">
-          <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg></div>
-          <h3>Sosyal medya içerikleri</h3><p>Markanıza uygun gönderi ve Reels tasarımları, metinler ve aylık içerik planı.</p>
-          <ul><li>Instagram</li><li>Reels</li><li>İçerik planı</li></ul>
-        </article>
-      </div>
+      <ol class="svc-list" id="svcList">
+        <li class="row reveal" style="--c:#FE2C55" data-ic="web"><span class="n">01</span><h3>Web siteleri</h3><div class="d"><p>Hızlı açılan, telefonda kusursuz görünen ve kolayca güncellenebilen kurumsal ve tanıtım siteleri.</p><ul class="t"><li>Kurumsal</li><li>Tanıtım sayfası</li><li>İki dilli</li><li>SEO temelleri</li></ul></div><span class="arr" aria-hidden="true">→</span></li>
+        <li class="row reveal" style="--c:#FF9F0A" data-ic="cart"><span class="n">02</span><h3>E-ticaret</h3><div class="d"><p>İkas ya da Shopify üzerinde kendi mağazanız; pazar yeri komisyonu yok. Ödeme, kargo, yasal sayfalar ve eğitim dahil.</p><ul class="t"><li>Kurulum ve tasarım</li><li>Ödeme</li><li>Kargo</li><li>Ürün yükleme</li></ul></div><span class="arr" aria-hidden="true">→</span></li>
+        <li class="row reveal" style="--c:#7ACB00" data-ic="phone"><span class="n">03</span><h3>iPhone uygulamaları</h3><div class="d"><p>iPhone, iPad ve Apple Watch için yerel uygulamalar; fikirden App Store’a.</p><ul class="t"><li>SwiftUI</li><li>HealthKit</li><li>Widget</li></ul><p class="proof">Yayında görün: <a href="#omni">Omni Health</a></p></div><span class="arr" aria-hidden="true">→</span></li>
+        <li class="row reveal" style="--c:#00C7BE" data-ic="care"><span class="n">04</span><h3>Bakım ve güncelleme</h3><div class="d"><p>Aylık içerik güncellemeleri, küçük değişiklikler ve kontroller; siteniz hiç eskimesin.</p><ul class="t"><li>Aylık paket</li><li>İçerik düzenleme</li><li>Yedekleme</li></ul></div><span class="arr" aria-hidden="true">→</span></li>
+        <li class="row reveal" style="--c:#AF52DE" data-ic="social"><span class="n">05</span><h3>Sosyal medya içerikleri</h3><div class="d"><p>Markanıza uygun gönderi ve Reels tasarımları, metinler ve aylık içerik planı.</p><ul class="t"><li>Instagram</li><li>Reels</li><li>İçerik planı</li></ul></div><span class="arr" aria-hidden="true">→</span></li>
+      </ol>
     </div>
+    <div class="svc-cursor" id="svcCursor" aria-hidden="true"></div>
   </section>
 
   <section class="work-intro" id="work" aria-labelledby="work-title">
     <div class="wrap">
       <p class="eyebrow reveal">İşlerimiz</p>
-      <h2 class="sec-h reveal" id="work-title">Kendi ürünlerimizi de yapıyoruz. <em>İşte biri.</em></h2>
+      <h2 class="sec-h reveal split" id="work-title">Kendi ürünlerimizi de yapıyoruz. <em>İşte biri.</em></h2>
       <p class="sec-lead reveal">Omni Health, 22 dilde App Store’da yayında. Müşterilerimiz için yaptığımız her şeyi önce burada deniyoruz.</p>
     </div>
   </section>
@@ -128,10 +108,10 @@
           <div class="stack" id="pinScreen">
             <div class="halo" id="halo"></div>
             <div class="scr">
-              <img class="on" src="../img/scr-today.jpg" alt="">
-              <img src="../img/scr-rhythm.jpg" alt="" loading="lazy">
-              <img src="../img/scr-recipe.jpg" alt="" loading="lazy">
-              <img src="../img/scr-cook.jpg" alt="" loading="lazy">
+              <img class="on" src="../img/tr/scr-today.jpg" alt="">
+              <img src="../img/tr/scr-rhythm.jpg" alt="" loading="lazy">
+              <img src="../img/tr/scr-recipe.jpg" alt="" loading="lazy">
+              <img src="../img/tr/scr-cook.jpg" alt="" loading="lazy">
             </div>
             <img class="bz" src="../img/bezel.png" alt="">
           </div>
@@ -151,38 +131,13 @@
     </div>
   </section>
 
-  <section class="versed" id="versed" aria-labelledby="versed-title">
-    <div class="wrap grid">
-      <div class="reveal">
-        <span class="badge">Yakında App Store’da</span>
-        <div class="versed-head">
-          <img src="../img/versed-icon.png" alt="Versed uygulama simgesi">
-          <h2 id="versed-title">Versed</h2>
-        </div>
-        <p class="tag">Her sabah sessiz bir sayfa.</p>
-        <p class="body">Her gün bir İncil ayeti ve kısa bir not: o zaman ne anlama geliyordu, bugün sizinki gibi sıradan bir günde ne anlama gelebilir. Okuyun, sayfaya çizin, gününüzün bir fotoğrafını pul gibi yapıştırın ve "amin" deyin.</p>
-        <ul>
-          <li>Sayfa sayfa sizin olan bir günlük</li>
-          <li>Bugünkü hislerinize göre bir ayet</li>
-          <li>Hesap yok, reklam yok, takip yok</li>
-        </ul>
-      </div>
-      <div class="shots reveal" id="versedShots" aria-hidden="true">
-        <img class="device shot a" src="../img/versed-notebook.png" alt="" loading="lazy">
-        <img class="device shot b" src="../img/versed-page.png" alt="" loading="lazy">
-      </div>
-    </div>
-  </section>
+
 
   <section class="principles" aria-labelledby="how">
     <div class="wrap">
       <p class="eyebrow reveal">Nasıl çalışıyoruz</p>
-      <h2 id="how" class="reveal">Küçük stüdyo. <em>Büyük özen.</em></h2>
-      <div class="cols">
-        <div class="card reveal" style="--c:var(--pink)"><div class="num">01</div><h3>Gizlilik önce gelir</h3><p>Müşterilerinizin verisi ait olduğu yerde kalır. Asla satmayız, reklam için kullanmayız.</p></div>
-        <div class="card reveal" style="--c:var(--lime); transition-delay:.08s"><div class="num">02</div><h3>Hızlı ve modern</h3><p>Her site ve uygulama önce mobil için tasarlanır, hızlı açılır ve Apple ile Google’ın yönergelerine uyar.</p></div>
-        <div class="card reveal" style="--c:var(--teal); transition-delay:.16s"><div class="num">03</div><h3>Baştan dürüst</h3><p>Net kapsam, net fiyat, sürpriz yok. Bir iş size uygun değilse bunu açıkça söyleriz.</p></div>
-      </div>
+      <h2 id="how" class="reveal split">Küçük stüdyo. <em>Büyük özen.</em></h2>
+      <p class="lit" id="lit"><b style="--c:var(--pink)">Gizlilik önce gelir.</b> Müşterilerinizin verisi ait olduğu yerde kalır. Asla satmayız, reklam için kullanmayız. <b style="--c:var(--lime)">Hızlı ve modern.</b> Her site ve uygulama önce mobil için tasarlanır, hızlı açılır ve Apple ile Google’ın yönergelerine uyar. <b style="--c:var(--teal)">Baştan dürüst.</b> Net kapsam, net fiyat, sürpriz yok. Bir iş size uygun değilse bunu açıkça söyleriz.</p>
     </div>
   </section>
 
@@ -190,7 +145,7 @@
     <div class="wrap">
       <div class="box reveal">
         <p class="eyebrow">Konuşalım</p>
-        <h2 id="ct-title">Aklınızda bir proje mi var?</h2>
+        <h2 id="ct-title" class="split">Aklınızda bir proje mi var?</h2>
         <p>Ne istediğinizi birkaç cümleyle yazın; fikirlerimiz ve net bir fiyat teklifiyle dönelim — genellikle bir gün içinde.</p>
         <div class="actions">
           <a class="btn-light" href="mailto:enes@beyazlabs.com?subject=Yeni%20proje">
@@ -227,7 +182,6 @@
           <h4>Uygulamalar</h4>
           <ul>
             <li><a href="#omni">Omni Health</a></li>
-            <li><a href="#versed">Versed</a><span class="soon">YAKINDA</span></li>
             <li><a href="../support.html">Destek</a></li>
             <li><a href="../privacypolicy.html">Gizlilik Politikası</a></li>
           </ul>
