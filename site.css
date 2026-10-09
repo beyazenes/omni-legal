@@ -438,3 +438,6 @@
   .hero .avail img { width: 20px; height: 20px; border-radius: 5px; flex: none; }
   .hero .avail .arr { color: var(--on-night-muted); transition: transform .3s ease; }
   a.avail:hover .arr { transform: translateX(3px); }
+  /* Studio kicker: a small brand mark echoing the headline gradient */
+  .hero .avail .mark { width: 10px; height: 10px; border-radius: 3px; flex: none; transform: rotate(45deg);
+    background: linear-gradient(135deg, #FF6A88, var(--pink) 50%, #FF9F0A); box-shadow: 0 0 12px rgba(254,44,85,.6); }
