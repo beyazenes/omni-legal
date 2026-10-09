@@ -175,24 +175,80 @@ document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', ()
     care: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4"/></svg>',
     social: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg>'
   };
-  // ── Contact: pick what you need; a service row preselects its chip.
-  const pick = document.getElementById('pick'), mail = document.getElementById('mailBtn');
-  if (pick && mail) {
-    const chips = [...pick.querySelectorAll('button')];
-    const sync = () => {
-      const sel = chips.filter(c => c.getAttribute('aria-pressed') === 'true').map(c => c.textContent.trim());
-      const subj = mail.dataset.subj + (sel.length ? ': ' + sel.join(', ') : '');
-      mail.href = 'mailto:enes@beyazlabs.com?subject=' + encodeURIComponent(subj) +
-        '&body=' + encodeURIComponent(decodeURIComponent(mail.dataset.body));
+  // ── Contact: a letter with blanks. Filling it in writes the email.
+  const form = document.getElementById('compose'), mail = document.getElementById('mailBtn');
+  if (form && mail) {
+    const inputs = [...form.querySelectorAll('input')];
+    const pks = [...form.querySelectorAll('.pk')];
+    const svc = document.getElementById('fSvc'), biz = document.getElementById('fB');
+    const ruler = document.createElement('span');
+    ruler.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;left:-9999px;top:0';
+    form.appendChild(ruler);
+    // A text blank is as wide as what is (or could be) written in it, plus room for the caret.
+    const fit = (f) => {
+      const cs = getComputedStyle(f);
+      ruler.style.font = cs.font; ruler.style.letterSpacing = cs.letterSpacing;
+      ruler.textContent = f.value || f.placeholder;
+      const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+      f.style.width = Math.ceil(ruler.getBoundingClientRect().width + pad + 4) + 'px';
     };
-    chips.forEach(c => c.addEventListener('click', () => {
-      c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); sync();
-    }));
+    const label = (b) => b.querySelector('.v').textContent;
+    const sync = () => {
+      let text = '';
+      form.querySelector('.letter').childNodes.forEach(n => {
+        if (n.nodeType === 3) { text += n.textContent; return; }
+        const i = n.querySelector('input'), b = n.querySelector('.pk');
+        text += i ? (i.value.trim() || '…') : label(b);
+      });
+      const subj = form.dataset.subj + ': ' + label(svc) + (biz.value.trim() ? ' · ' + biz.value.trim() : '');
+      mail.href = 'mailto:enes@beyazlabs.com?subject=' + encodeURIComponent(subj) +
+        '&body=' + encodeURIComponent(text.replace(/\s+/g, ' ').trim() + '\n\n' + form.dataset.tail + '\n');
+    };
+    // Choice blanks open a small menu in the site's own style.
+    const choose = (b, li) => {
+      b.dataset.value = li.dataset.v; b.querySelector('.v').textContent = li.textContent;
+      b.parentElement.querySelectorAll('[role=option]').forEach(o => o.setAttribute('aria-selected', o === li ? 'true' : 'false'));
+      if (li.dataset.c) b.parentElement.style.setProperty('--c', li.dataset.c);
+      if (li.dataset.c) form.closest('.box').style.setProperty('--glow', li.dataset.c === '#F7EFF1' ? '#8E7F86' : li.dataset.c);
+      sync();
+    };
+    const close = (b, focus) => {
+      b.setAttribute('aria-expanded', 'false'); b.parentElement.classList.remove('open');
+      if (focus) b.focus();
+    };
+    const open = (b) => {
+      pks.forEach(o => o !== b && close(o));
+      const wrap = b.parentElement, menu = wrap.querySelector('.menu');
+      wrap.classList.remove('flip'); wrap.classList.add('open'); b.setAttribute('aria-expanded', 'true');
+      if (menu.getBoundingClientRect().right > innerWidth - 12) wrap.classList.add('flip');
+      (menu.querySelector('[aria-selected=true]') || menu.firstElementChild).focus();
+    };
+    pks.forEach(b => {
+      const menu = b.parentElement.querySelector('.menu');
+      [...menu.children].forEach(li => {
+        li.tabIndex = -1;
+        li.addEventListener('click', () => { choose(b, li); close(b, true); });
+      });
+      b.addEventListener('click', () => b.getAttribute('aria-expanded') === 'true' ? close(b) : open(b));
+      b.addEventListener('keydown', e => { if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); open(b); } });
+      menu.addEventListener('keydown', e => {
+        const items = [...menu.children], i = items.indexOf(document.activeElement);
+        if (e.key === 'ArrowDown') { e.preventDefault(); items[Math.min(i + 1, items.length - 1)].focus(); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); items[Math.max(i - 1, 0)].focus(); }
+        else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (i >= 0) { choose(b, items[i]); close(b, true); } }
+        else if (e.key === 'Escape' || e.key === 'Tab') { close(b, e.key === 'Escape'); }
+      });
+    });
+    document.addEventListener('click', e => pks.forEach(b => { if (!b.parentElement.contains(e.target)) close(b); }));
+    inputs.forEach(f => f.addEventListener('input', () => { fit(f); sync(); }));
+    const refit = () => inputs.forEach(fit);
+    refit(); sync(); addEventListener('resize', refit);
+    if (document.fonts) document.fonts.ready.then(refit);
     document.querySelectorAll('.svc-list .go').forEach(a => a.addEventListener('click', () => {
-      const c = chips.find(c => c.dataset.k === a.dataset.pick);
-      if (!c) return;
-      c.setAttribute('aria-pressed', 'true'); sync();
-      c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash');
+      const li = svc.parentElement.querySelector('[data-v="' + a.dataset.pick + '"]');
+      if (!li) return;
+      choose(svc, li);
+      const w = svc.parentElement; w.classList.remove('flash'); void w.offsetWidth; w.classList.add('flash');
     }));
   }
 

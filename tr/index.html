@@ -16,7 +16,7 @@
 <meta property="og:description" content="Beyaz Labs; iPhone uygulamaları, web siteleri, e-ticaret mağazaları ve sosyal medya içerikleri üreten bağımsız bir stüdyo. Türkiye geneli ve yurt dışına hizmet. Omni Health’in yapımcısı.">
 <meta property="og:image" content="https://beyazlabs.com/img/omni-today.png">
 <meta property="og:locale" content="tr_TR">
-<link rel="stylesheet" href="../site.css?v=202610091244">
+<link rel="stylesheet" href="../site.css?v=202610091256">
 </head>
 <body>
   <nav class="top" aria-label="Main">
@@ -146,21 +146,17 @@
       <div class="box reveal">
         <p class="eyebrow">Konuşalım</p>
         <h2 id="ct-title" class="split">Aklınızda bir proje mi var?</h2>
-        <p>Ne istediğinizi birkaç cümleyle yazın; fikirlerimiz ve net bir fiyat teklifiyle dönelim. Genellikle bir gün içinde.</p>
-        <div class="pick" id="pick" role="group" aria-label="Neye ihtiyacınız var?">
-          <span class="pl">Neye ihtiyacınız var?</span>
-          <button type="button" data-k="web" style="--c:#FE2C55" aria-pressed="false">Web siteleri</button>
-          <button type="button" data-k="cart" style="--c:#FF9F0A" aria-pressed="false">E-ticaret</button>
-          <button type="button" data-k="phone" style="--c:#7ACB00" aria-pressed="false">iPhone uygulamaları</button>
-          <button type="button" data-k="care" style="--c:#00C7BE" aria-pressed="false">Bakım ve güncelleme</button>
-          <button type="button" data-k="social" style="--c:#AF52DE" aria-pressed="false">Sosyal medya içerikleri</button>
-        </div>
-        <div class="actions">
-          <a class="btn-light" id="mailBtn" href="mailto:enes@beyazlabs.com?subject=Yeni%20proje" data-subj="Yeni proje" data-body="Merhaba Enes,%0A%0AAklımdaki proje:%0A">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
-            enes@beyazlabs.com
-          </a>
-        </div>
+        <p>Boşlukları doldurun, mailiniz kendiliğinden yazılsın. Genellikle bir gün içinde fikirler ve net bir fiyatla döneriz.</p>
+        <form class="compose" id="compose" action="mailto:enes@beyazlabs.com" onsubmit="return false" data-subj="Yeni proje" data-tail="Biraz daha detay:">
+          <p class="letter">Merhaba Enes, ben <span class="blank"><input id="fA" data-1p-ignore data-lpignore="true" type="text" autocomplete="off" placeholder="adınız" aria-label="adınız" spellcheck="false"></span>. <span class="blank"><input id="fB" data-1p-ignore data-lpignore="true" type="text" autocomplete="off" placeholder="işletmenizin adı" aria-label="işletmenizin adı" spellcheck="false"></span> için <span class="blank sel" style="--c:#FE2C55"><button type="button" class="pk" id="fSvc" data-value="web" aria-haspopup="listbox" aria-expanded="false" aria-label="Hizmet"><span class="v">bir web sitesi</span><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="menu" role="listbox" aria-label="Hizmet"><span role="option" data-v="web" data-c="#FE2C55" aria-selected="true">bir web sitesi</span><span role="option" data-v="cart" data-c="#FF9F0A" aria-selected="false">bir online mağaza</span><span role="option" data-v="phone" data-c="#7ACB00" aria-selected="false">bir iPhone uygulaması</span><span role="option" data-v="care" data-c="#00C7BE" aria-selected="false">bakım ve güncelleme</span><span role="option" data-v="social" data-c="#AF52DE" aria-selected="false">sosyal medya içerikleri</span><span role="option" data-v="more" data-c="#F7EFF1" aria-selected="false">birkaç şey</span></span></span> istiyoruz ve <span class="blank sel"><button type="button" class="pk" id="fWhen" data-value="now" aria-haspopup="listbox" aria-expanded="false" aria-label="Ne zaman"><span class="v">hemen</span><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="menu" role="listbox" aria-label="Ne zaman"><span role="option" data-v="now" aria-selected="true">hemen</span><span role="option" data-v="month" aria-selected="false">bu ay</span><span role="option" data-v="months" aria-selected="false">birkaç ay içinde</span><span role="option" data-v="later" aria-selected="false">acele etmeden</span></span></span> başlamak isteriz.</p>
+          <div class="actions">
+            <a class="btn-light" id="mailBtn" href="mailto:enes@beyazlabs.com?subject=Yeni%20proje">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+              Maili hazırla
+            </a>
+            <span class="hint">Mail uygulamanız açılır, göndermeden önce düzenleyebilirsiniz. Ya da doğrudan yazın: <a href="mailto:enes@beyazlabs.com">enes@beyazlabs.com</a></span>
+          </div>
+        </form>
         <div class="meta">
           <span><b>Nerede</b> Türkiye geneli ve yurt dışı, uzaktan</span>
           <span><b>Diller</b> Türkçe, İngilizce</span>
@@ -210,6 +206,6 @@
     </div>
   </footer>
 
-<script src="../site.js?v=202610091244"></script>
+<script src="../site.js?v=202610091256"></script>
 </body>
 </html>

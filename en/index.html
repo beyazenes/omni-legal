@@ -16,7 +16,7 @@
 <meta property="og:description" content="Beyaz Labs is an independent studio building iPhone apps, websites, online stores and social content — in Turkey and worldwide. Makers of Omni Health.">
 <meta property="og:image" content="https://beyazlabs.com/img/omni-today.png">
 <meta property="og:locale" content="en_US">
-<link rel="stylesheet" href="../site.css?v=202610091244">
+<link rel="stylesheet" href="../site.css?v=202610091256">
 </head>
 <body>
   <nav class="top" aria-label="Main">
@@ -167,21 +167,17 @@
       <div class="box reveal">
         <p class="eyebrow">Let’s talk</p>
         <h2 id="ct-title" class="split">Have a project in mind?</h2>
-        <p>Tell us what you need in a few sentences. We’ll reply with ideas and a clear quote, usually within a day.</p>
-        <div class="pick" id="pick" role="group" aria-label="What do you need?">
-          <span class="pl">What do you need?</span>
-          <button type="button" data-k="web" style="--c:#FE2C55" aria-pressed="false">Websites</button>
-          <button type="button" data-k="cart" style="--c:#FF9F0A" aria-pressed="false">Online stores</button>
-          <button type="button" data-k="phone" style="--c:#7ACB00" aria-pressed="false">iPhone apps</button>
-          <button type="button" data-k="care" style="--c:#00C7BE" aria-pressed="false">Care & updates</button>
-          <button type="button" data-k="social" style="--c:#AF52DE" aria-pressed="false">Social content</button>
-        </div>
-        <div class="actions">
-          <a class="btn-light" id="mailBtn" href="mailto:enes@beyazlabs.com?subject=New%20project" data-subj="New project" data-body="Hi Enes,%0A%0AWhat I have in mind:%0A">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
-            enes@beyazlabs.com
-          </a>
-        </div>
+        <p>Fill in the blanks and your email writes itself. We usually reply within a day with ideas and a clear quote.</p>
+        <form class="compose" id="compose" action="mailto:enes@beyazlabs.com" onsubmit="return false" data-subj="New project" data-tail="A bit more about it:">
+          <p class="letter">Hi Enes, I’m <span class="blank"><input id="fA" data-1p-ignore data-lpignore="true" type="text" autocomplete="off" placeholder="your name" aria-label="your name" spellcheck="false"></span>. We’d like <span class="blank sel" style="--c:#FE2C55"><button type="button" class="pk" id="fSvc" data-value="web" aria-haspopup="listbox" aria-expanded="false" aria-label="Service"><span class="v">a website</span><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="menu" role="listbox" aria-label="Service"><span role="option" data-v="web" data-c="#FE2C55" aria-selected="true">a website</span><span role="option" data-v="cart" data-c="#FF9F0A" aria-selected="false">an online store</span><span role="option" data-v="phone" data-c="#7ACB00" aria-selected="false">an iPhone app</span><span role="option" data-v="care" data-c="#00C7BE" aria-selected="false">care and updates</span><span role="option" data-v="social" data-c="#AF52DE" aria-selected="false">social media content</span><span role="option" data-v="more" data-c="#F7EFF1" aria-selected="false">a few things</span></span></span> for <span class="blank"><input id="fB" data-1p-ignore data-lpignore="true" type="text" autocomplete="off" placeholder="your business" aria-label="your business" spellcheck="false"></span>, and we’d like to start <span class="blank sel"><button type="button" class="pk" id="fWhen" data-value="now" aria-haspopup="listbox" aria-expanded="false" aria-label="When"><span class="v">right away</span><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="menu" role="listbox" aria-label="When"><span role="option" data-v="now" aria-selected="true">right away</span><span role="option" data-v="month" aria-selected="false">this month</span><span role="option" data-v="months" aria-selected="false">in a few months</span><span role="option" data-v="later" aria-selected="false">whenever suits</span></span></span>.</p>
+          <div class="actions">
+            <a class="btn-light" id="mailBtn" href="mailto:enes@beyazlabs.com?subject=New%20project">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+              Write the email
+            </a>
+            <span class="hint">Your mail app opens, so you can edit before sending. Or write directly: <a href="mailto:enes@beyazlabs.com">enes@beyazlabs.com</a></span>
+          </div>
+        </form>
         <div class="meta">
           <span><b>Where</b> Turkey & worldwide, remote</span>
           <span><b>Languages</b> Turkish, English</span>
@@ -232,6 +228,6 @@
     </div>
   </footer>
 
-<script src="../site.js?v=202610091244"></script>
+<script src="../site.js?v=202610091256"></script>
 </body>
 </html>
