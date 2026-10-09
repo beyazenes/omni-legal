@@ -65,6 +65,18 @@ document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', ()
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Rotating headline word
   const rot = document.querySelector('.hero h1 .rot');
+  // Reserve the height of the tallest word so the phones below never jump.
+  if (rot) {
+    const h1 = rot.closest('h1');
+    const lock = () => {
+      const now = rot.textContent; h1.style.minHeight = '';
+      let max = 0;
+      rot.dataset.words.split('|').forEach(w => { rot.textContent = w; max = Math.max(max, h1.offsetHeight); });
+      rot.textContent = now; h1.style.minHeight = max + 'px';
+    };
+    lock(); addEventListener('resize', lock);
+    if (document.fonts) document.fonts.ready.then(lock);
+  }
   if (rot && !reduce) {
     const words = rot.dataset.words.split('|'); let i = 0;
     setInterval(() => {
@@ -134,14 +146,24 @@ document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', ()
     const words = [...lit.querySelectorAll('.w')];
     lit.querySelectorAll('.w > span').forEach(s => s.style.transitionDelay = '0s');
     const sec = lit.closest('section');
-    const paint = () => {
+    // Each word lights when its own line crosses a reading line on screen,
+    // sweeping left to right across the line — so the light follows the eye.
+    let pos = [];
+    const measure = () => {
       const r = lit.getBoundingClientRect();
-      const p = Math.min(Math.max((innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.35), 0), 1);
-      const n = Math.round(p * words.length);
-      words.forEach((w, i) => w.classList.toggle('on', i < n));
+      pos = words.map(w => { const b = w.getBoundingClientRect(); return b.top - r.top + (b.left - r.left) / r.width * b.height; });
+    };
+    const paint = () => {
+      const top = lit.getBoundingClientRect().top, line = innerHeight * 0.75;
+      const end = scrollY + innerHeight >= document.documentElement.scrollHeight - 4;
+      words.forEach((w, i) => w.classList.toggle('on', end || top + pos[i] < line));
     };
     if (reduce) words.forEach(w => w.classList.add('on'));
-    else { addEventListener('scroll', paint, { passive: true }); addEventListener('resize', paint); paint(); }
+    else {
+      const re = () => { measure(); paint(); };
+      addEventListener('scroll', paint, { passive: true }); addEventListener('resize', re); re();
+      if (document.fonts) document.fonts.ready.then(re);
+    }
   }
 
   // ── Services: a colored bubble with the service icon follows the pointer.
@@ -153,6 +175,27 @@ document.querySelectorAll('.lang a').forEach(a => a.addEventListener('click', ()
     care: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4"/></svg>',
     social: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor"/></svg>'
   };
+  // ── Contact: pick what you need; a service row preselects its chip.
+  const pick = document.getElementById('pick'), mail = document.getElementById('mailBtn');
+  if (pick && mail) {
+    const chips = [...pick.querySelectorAll('button')];
+    const sync = () => {
+      const sel = chips.filter(c => c.getAttribute('aria-pressed') === 'true').map(c => c.textContent.trim());
+      const subj = mail.dataset.subj + (sel.length ? ': ' + sel.join(', ') : '');
+      mail.href = 'mailto:enes@beyazlabs.com?subject=' + encodeURIComponent(subj) +
+        '&body=' + encodeURIComponent(decodeURIComponent(mail.dataset.body));
+    };
+    chips.forEach(c => c.addEventListener('click', () => {
+      c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); sync();
+    }));
+    document.querySelectorAll('.svc-list .go').forEach(a => a.addEventListener('click', () => {
+      const c = chips.find(c => c.dataset.k === a.dataset.pick);
+      if (!c) return;
+      c.setAttribute('aria-pressed', 'true'); sync();
+      c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash');
+    }));
+  }
+
   if (list && cur && !reduce && matchMedia('(hover: hover) and (min-width: 861px)').matches) {
     let x = 0, y = 0, tx = 0, ty = 0, raf = 0;
     const loop = () => { x += (tx - x) * 0.18; y += (ty - y) * 0.18; cur.style.transform = `translate(${x}px, ${y}px)`; raf = requestAnimationFrame(loop); };

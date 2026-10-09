@@ -346,3 +346,24 @@
   @media (prefers-reduced-motion: reduce) {
     .split .w > span { transform: none; transition: none; }
   }
+
+  /* Service rows open the contact form with that service picked */
+  .svc-list .row .go { position: absolute; inset: 0 -24px; z-index: 1; border-radius: 22px; }
+  .svc-list .row .go:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+  .svc-list .row { cursor: pointer; }
+  .pick { display: flex; flex-wrap: wrap; gap: 8px; margin: -8px 0 30px; max-width: 640px; }
+  .pick .pl { width: 100%; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--on-night-muted); margin-bottom: 4px; }
+  .pick button { font: 500 15px/1 var(--sans); color: var(--on-night); background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.16);
+    border-radius: 999px; padding: 10px 16px; cursor: pointer; display: inline-flex; align-items: center; gap: 0;
+    transition: background .3s ease, border-color .3s ease, gap .3s ease, transform .2s ease; }
+  .pick button::before { content: ""; width: 0; height: 8px; border-radius: 50%; background: var(--c); transition: width .3s ease; }
+  .pick button:hover { border-color: rgba(255,255,255,.34); }
+  .pick button:active { transform: scale(.96); }
+  .pick button[aria-pressed="true"] { background: color-mix(in srgb, var(--c) 20%, transparent); border-color: var(--c); gap: 8px; }
+  .pick button[aria-pressed="true"]::before { width: 8px; }
+  .pick button:focus-visible { outline: 2px solid var(--c); outline-offset: 3px; }
+  .pick button.flash { animation: pickFlash .9s ease .5s; }
+  @keyframes pickFlash { 0%, 100% { box-shadow: 0 0 0 0 transparent; } 40% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--c) 30%, transparent); } }
+  @media (max-width: 860px) { .svc-list .row .go { inset: 0; } }
+  @media (prefers-reduced-motion: reduce) { .pick button, .pick button::before { transition: none; } .pick button.flash { animation: none; } }
+  .svc-list .proof a { position: relative; z-index: 2; }
