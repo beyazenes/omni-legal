@@ -36,7 +36,7 @@ for w in root.iter('way'):
         office = w.get('id') == OFFICE_WAY
         lv = OFFICE_LEVELS_SHOWN if office else min(6, int(t.get('building:levels') or guess_levels(w.get('id'))))
         b = {'p': [round(v, 1) for p in pts for v in p], 'h': round(lv * FLOOR, 1)}
-        if office: b['o'] = 1
+        if office: b['o'] = 1; b['l'] = lv
         buildings.append(b)
     elif 'highway' in t and t['highway'] not in ('footway', 'steps', 'path', 'cycleway', 'pedestrian', 'service'):
         if min(math.hypot(*p) for p in pts) > RADIUS * 1.15: continue
@@ -60,6 +60,12 @@ for i in range(len(poly)):
             if not buildings[k].get('o'): drop.add(k)
 buildings = [b for k, b in enumerate(buildings) if k not in drop]
 assert any(b.get('o') for b in buildings), 'ofis binası bulunamadı'
+# Ofisin tepesine geri çekilmiş tek katlık cam "taç" (modern kule görünümü)
+ob = next(b for b in buildings if b.get('o'))
+pp = [(ob['p'][i], ob['p'][i + 1]) for i in range(0, len(ob['p']), 2)]
+cx = sum(p[0] for p in pp) / len(pp); cy = sum(p[1] for p in pp) / len(pp)
+crown = [round(v, 1) for p in pp for v in (cx + (p[0] - cx) * .72, cy + (p[1] - cy) * .72)]
+buildings.append({'p': crown, 'z': ob['h'], 'h': round(ob['h'] + FLOOR * 1.2, 1), 'o': 2, 'l': 1})
 data = json.dumps({'r': RADIUS, 'b': buildings, 'r2': roads}, separators=(',', ':'))
 js = open(os.path.join(SRC, 'map.src.js'), encoding='utf-8').read()
 open('map.js', 'w', encoding='utf-8').write(

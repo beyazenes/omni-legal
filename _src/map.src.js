@@ -16,17 +16,18 @@
     for (let i = 0; i < p.length; i++) { const q = p[i], r = p[(i + 1) % p.length]; a += q[0] * r[1] - r[0] * q[1]; }
     if (a < 0) p.reverse();
     const cx = p.reduce((s, q) => s + q[0], 0) / p.length, cy = p.reduce((s, q) => s + q[1], 0) / p.length;
-    return { p, h: b.h, o: !!b.o, cx, cy };
+    return { p, h: b.h, z: b.z || 0, l: b.l || 0, o: b.o || 0, cx, cy };
   });
-  const office = B.find(b => b.o);
+  const office = B.find(b => b.o === 1);
+  const ox0 = office.cx, oy0 = office.cy;   // döngüde office.cx de sıfırlanır: önce sakla
   const roads = M.r2.map(r => {
     const p = [];
-    for (let i = 0; i < r.p.length; i += 2) p.push([r.p[i] - office.cx, r.p[i + 1] - office.cy]);
+    for (let i = 0; i < r.p.length; i += 2) p.push([r.p[i] - ox0, r.p[i + 1] - oy0]);
     return { p, w: r.w };
   });
-  B.forEach(b => { b.p = b.p.map(q => [q[0] - office.cx, q[1] - office.cy]); b.cx -= office.cx; b.cy -= office.cy; });
+  B.forEach(b => { b.p = b.p.map(q => [q[0] - ox0, q[1] - oy0]); b.cx -= ox0; b.cy -= oy0; });
 
-  const PITCH = 1.0, YAW = -0.42;      // ~57° yukarıdan: binalar arkadaki yollara yatmasın
+  const PITCH = 1.02, YAW = -0.42;     // ~58° yukarıdan: hem 3D hissi hem okunur sokaklar
   let yaw = YAW, pitch = PITCH, ty = YAW, tp = PITCH, W = 0, H = 0, dpr = 1, s = 1, ox = 0, oy = 0;
   let running = false, visible = false, t0 = performance.now();
 
@@ -67,7 +68,7 @@
     // Binalar: uzaktan yakına (ressam algoritması)
     const L = [Math.cos(yaw + 2.2), Math.sin(yaw + 2.2)];   // ışık kameraya göre sabit yönden
     // sıralama anahtarı: kameraya en yakın köşe (merkez uzun binalarda yanıltıyor)
-    const order = B.map(b => [b, Math.min(...b.p.map(q => q[0] * sn + q[1] * c))]).sort((a, b) => (a[0].o - b[0].o) || (b[1] - a[1]));   // ofis en yüksek: hep en son çizilir
+    const order = B.map(b => [b, Math.min(...b.p.map(q => q[0] * sn + q[1] * c))]).sort((a, b) => (a[0].o - b[0].o) || (b[1] - a[1]));   // ofis (ve tacı) en yüksek: hep en son çizilir
     for (const [b] of order) {
       const base = b.o ? [254, 44, 85] : [26, 17, 21], top = b.o ? [255, 120, 140] : [40, 28, 33];
       const n = b.p.length;
@@ -80,10 +81,23 @@
         const lit = .5 + .5 * ((nx * L[0] + ny * L[1]) / ln);
         const P1 = proj(a[0], a[1], 0, c, sn, cp, sp), P2 = proj(d[0], d[1], 0, c, sn, cp, sp);
         const P3 = proj(d[0], d[1], b.h, c, sn, cp, sp), P4 = proj(a[0], a[1], b.h, c, sn, cp, sp);
+        if (b.z) { P1[1] -= b.z * cp * s; P2[1] -= b.z * cp * s; }
         ctx.beginPath(); ctx.moveTo(P1[0], P1[1]); ctx.lineTo(P2[0], P2[1]); ctx.lineTo(P3[0], P3[1]); ctx.lineTo(P4[0], P4[1]); ctx.closePath();
         ctx.fillStyle = rgb(b.o ? mix([150, 18, 48], base, lit) : mix([14, 9, 11], base, .3 + lit * .9));
         ctx.fill();
         ctx.strokeStyle = b.o ? 'rgba(255,200,210,.35)' : 'rgba(255,255,255,.05)'; ctx.lineWidth = 1; ctx.stroke();
+        if (b.o) {   // cam cephe: kat bantları + dikmeler
+          const sh = ctx.shadowBlur; ctx.shadowBlur = 0;
+          const lerp = (u, v) => [P1[0] + (P2[0] - P1[0]) * u + (P4[0] - P1[0]) * v, P1[1] + (P2[1] - P1[1]) * u + (P4[1] - P1[1]) * v];
+          ctx.beginPath();
+          for (let k = 1; k < b.l; k++) { const v = k / b.l, A = lerp(0, v), D = lerp(1, v); ctx.moveTo(A[0], A[1]); ctx.lineTo(D[0], D[1]); }
+          ctx.strokeStyle = 'rgba(255,225,230,.45)'; ctx.lineWidth = 1; ctx.stroke();
+          const m = Math.max(2, Math.round(Math.hypot(d[0] - a[0], d[1] - a[1]) / 3.2));
+          ctx.beginPath();
+          for (let k = 1; k < m; k++) { const A = lerp(k / m, 0), D = lerp(k / m, 1); ctx.moveTo(A[0], A[1]); ctx.lineTo(D[0], D[1]); }
+          ctx.strokeStyle = 'rgba(80,0,20,.28)'; ctx.stroke();
+          ctx.shadowBlur = sh;
+        }
       }
       ctx.beginPath();
       b.p.forEach((q, i) => { const P = proj(q[0], q[1], b.h, c, sn, cp, sp); i ? ctx.lineTo(P[0], P[1]) : ctx.moveTo(P[0], P[1]); });
@@ -107,7 +121,7 @@
 
     // Pin: çatıdan yükselen ince çizgi + HTML etiket
     const bob = reduce ? 0 : Math.sin((performance.now() - t0) / 900) * 1.2;
-    const roof = proj(0, 0, office.h, c, sn, cp, sp), head = [roof[0], roof[1] - 58 - bob * 3];   // pin her ekranda binanın üstünde, aynı mesafede
+    const top = B.reduce((m, b) => b.o ? Math.max(m, b.h) : m, 0), roof = proj(0, 0, top, c, sn, cp, sp), head = [roof[0], roof[1] - 58 - bob * 3];   // pin her ekranda binanın üstünde, aynı mesafede
     const lg = ctx.createLinearGradient(0, roof[1], 0, head[1]);
     lg.addColorStop(0, 'rgba(255,255,255,0)'); lg.addColorStop(1, 'rgba(255,255,255,.85)');
     ctx.strokeStyle = lg; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(roof[0], roof[1]); ctx.lineTo(head[0], head[1]); ctx.stroke();
