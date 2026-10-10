@@ -26,7 +26,7 @@
   });
   B.forEach(b => { b.p = b.p.map(q => [q[0] - office.cx, q[1] - office.cy]); b.cx -= office.cx; b.cy -= office.cy; });
 
-  const PITCH = 0.82, YAW = -0.42;     // ~47° yukarıdan, hafif çapraz
+  const PITCH = 1.0, YAW = -0.42;      // ~57° yukarıdan: binalar arkadaki yollara yatmasın
   let yaw = YAW, pitch = PITCH, ty = YAW, tp = PITCH, W = 0, H = 0, dpr = 1, s = 1, ox = 0, oy = 0;
   let running = false, visible = false, t0 = performance.now();
 
@@ -59,14 +59,15 @@
       ctx.beginPath();
       r.p.forEach((q, i) => { const P = proj(q[0], q[1], 0, c, sn, cp, sp); i ? ctx.lineTo(P[0], P[1]) : ctx.moveTo(P[0], P[1]); });
       ctx.strokeStyle = r.w === 2 ? 'rgba(255,255,255,.10)' : 'rgba(255,255,255,.055)';
-      ctx.lineWidth = (r.w === 2 ? 11 : 6) * s;
+      ctx.lineWidth = (r.w === 2 ? 7 : 3.5) * s;
       ctx.stroke();
       if (r.w === 2) { ctx.strokeStyle = 'rgba(254,44,85,.35)'; ctx.lineWidth = Math.max(1, .8 * s); ctx.stroke(); }
     });
 
     // Binalar: uzaktan yakına (ressam algoritması)
     const L = [Math.cos(yaw + 2.2), Math.sin(yaw + 2.2)];   // ışık kameraya göre sabit yönden
-    const order = B.map(b => [b, b.cx * sn + b.cy * c]).sort((a, b) => b[1] - a[1]);
+    // sıralama anahtarı: kameraya en yakın köşe (merkez uzun binalarda yanıltıyor)
+    const order = B.map(b => [b, Math.min(...b.p.map(q => q[0] * sn + q[1] * c))]).sort((a, b) => (a[0].o - b[0].o) || (b[1] - a[1]));   // ofis en yüksek: hep en son çizilir
     for (const [b] of order) {
       const base = b.o ? [254, 44, 85] : [26, 17, 21], top = b.o ? [255, 120, 140] : [40, 28, 33];
       const n = b.p.length;
@@ -131,7 +132,7 @@
     box.addEventListener('pointermove', e => {
       const r = box.getBoundingClientRect();
       ty = YAW + ((e.clientX - r.left) / r.width - .5) * .7;
-      tp = PITCH + ((e.clientY - r.top) / r.height - .5) * -.18;
+      tp = PITCH + ((e.clientY - r.top) / r.height - .5) * -.12;
     });
     box.addEventListener('pointerleave', () => { ty = YAW; tp = PITCH; });
   }
