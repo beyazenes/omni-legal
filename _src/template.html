@@ -18,6 +18,7 @@
 <meta property="og:image" content="https://beyazlabs.com/img/omni-today.png">
 <meta property="og:locale" content="{{ogl}}">
 <link rel="stylesheet" href="../site.css?v={{ver}}">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Beyaz Labs","url":"https://beyazlabs.com/","logo":"https://beyazlabs.com/img/apple-touch-icon.png","image":"https://beyazlabs.com/img/apple-touch-icon.png","email":"enes@beyazlabs.com","address":{"@type":"PostalAddress","streetAddress":"Şht. Mehmet Öter Cd., Yüncüler İş Merkezi Kat 4 No 73, Değirmiçem","addressLocality":"Şehitkamil","addressRegion":"Gaziantep","postalCode":"27500","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":37.06791,"longitude":37.37205},"sameAs":["https://www.instagram.com/beyazlabs/"]}</script>
 </head>
 <body>
   <nav class="top" aria-label="Main">
@@ -167,6 +168,29 @@
     </div>
   </section>
 
+  <section class="visit" id="visit" aria-labelledby="visit-title">
+    <div class="wrap visit-grid">
+      <div class="visit-text reveal">
+        <p class="eyebrow">{{vi_eyebrow}}</p>
+        <h2 id="visit-title">{{vi_h}}</h2>
+        <p>{{vi_p}}</p>
+        <address>Yüncüler İş Merkezi, {{vi_floor}}<br>Şht. Mehmet Öter Cd., Değirmiçem<br>27500 Şehitkamil / Gaziantep</address>
+        <div class="visit-links">
+          <a class="btn-light" href="https://www.google.com/maps/search/?api=1&amp;query=Beyaz%20Labs%2C%20Y%C3%BCnc%C3%BCler%20%C4%B0%C5%9F%20Merkezi%2C%20Gaziantep" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            {{vi_google}}
+          </a>
+          <a class="btn-ghost" href="https://maps.apple.com/?q=Beyaz%20Labs&amp;ll=37.06791,37.37205&amp;z=18" rel="noopener">{{vi_apple}}</a>
+        </div>
+      </div>
+      <div class="scene reveal">
+        <canvas id="officeMap" role="img" aria-label="{{vi_map_aria}}"></canvas>
+        <div class="pin" id="officePin" aria-hidden="true"><span class="pin-b">B</span><span class="pin-t">Beyaz Labs</span></div>
+        <p class="osm">{{vi_osm}} <a href="https://www.openstreetmap.org/copyright" rel="noopener">© OpenStreetMap</a></p>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="wrap">
       <div class="grid">
@@ -209,5 +233,6 @@
   </footer>
 
 <script src="../site.js?v={{ver}}"></script>
+<script src="../map.js?v={{ver}}"></script>
 </body>
 </html>
